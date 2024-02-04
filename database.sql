@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS `antoinemazelaygue_3wa_Anime_Ink`;
+-- DROP DATABASE IF EXISTS `antoinemazelaygue_3wa_Anime_Ink`;
 
 CREATE DATABASE `antoinemazelaygue_3wa_Anime_Ink`;
 
