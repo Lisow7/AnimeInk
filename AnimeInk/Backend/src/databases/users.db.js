@@ -37,7 +37,7 @@
 
 // export const UserDB = { create, signIn };
 
-// /*
+
 // const create = async (email, password, pseudo = "Anonyme") => {
 //   const sql = INSERT INTO users (email, password, pseudo)
 //     VALUES (?, ?, ?);
@@ -76,5 +76,3 @@
 // };
 
 // export const UserDB = { create, readByEmail };
-
-// */

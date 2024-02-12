@@ -8,7 +8,7 @@
 
 // const create = async (req, res) => {
 //   const { email, password, name } = req.body;
-  
+
 //   // try{
 
 //   // Check if email is invalid
@@ -53,54 +53,54 @@
 // const signIn = async (req, res) => {
 //     const { email, password, name } = req.body;
 
-  
+
 //     // Check if email is invalid
 //     if (!email || !isEmail(email)) {
 //       return res.status(403).json({ message: `Authentication failed` });
 //     }
 
-  
+
 //     //Check if password is invalid
 //     if (!stringIsFilled(password)) {
 //       return res.status(403).json({ message: `Authentication failed` });
 //     }
 
-    
+
 //     //SQL
 //     const response = await UserDB.signIn(email);
 //     const responseErr = response.error;
-  
+
 //     if (responseErr) {
 //       return res.status(401).json({ message: responseErr });
 //     }
-  
+
 //     const result = response.result;
 //     const user = result[0];
 
 //     if (!user) {
 //       return res.status(401).json({ message: `Authentication failed` });
 //     }
-  
+
 //     //Verification password for user authentification
 //     const userId = user.user_id;
 //     const dbPassword = user.password;
 //     const userName = user.username;
-  
+
 //     const passAreSame = await compareHash(password, dbPassword);
-  
+
 //     if (!passAreSame) {
 //       return res.status(401).json({ message: `Authentication failed` });
 //     }
-  
+
 //     //Token creation
 //     const token = jwtSign(userId);
-  
+
 
 //     return res
 //       .status(200)
 //       .json({ message: `sign_in_ok`, user: { userId, email, userName, token } });
 //   };
-  
+
 //   export const UserController = {
 //     create,
 //     signIn,
