@@ -1,3 +1,5 @@
 .env
 node_modules
 package-lock.json
+database.js
+migrate.js

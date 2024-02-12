@@ -1,11 +1,11 @@
 // import initAccountRoutes from "./account.routes.js";
-// import initArticleRoutes from "./article.routes.js";
+import initArticlesRoutes from "./articles.routes.js";
 import initCommentsRoutes from "./comments.routes.js";
 // import initUserRoutes from "./user.routes.js";
 
 const initRoutes = (app) => {
   // initAccountRoutes(app);
-  // initArticleRoutes(app);
+  initArticlesRoutes(app);
   initCommentsRoutes(app);
   // initUserRoutes(app);
 };
