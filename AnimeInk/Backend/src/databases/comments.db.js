@@ -50,3 +50,29 @@ export const TestComment = async () => {
     return { error, result };
   }
 };
+
+export const findComment = async (api_url) => {
+  const sql = `SELECT * FROM comments WHERE user_id, content = ?, ?`;
+  const values = [user_id, content];
+
+  try {
+    const result = await query(sql, values);
+    return result;
+  } catch (error) {
+    throw new Error("Error FINDING Article");
+  }
+};
+
+export const addComment = async (commentData) => {
+  const { content } = commentData;
+  const userId = req.params;
+  const sql = `INSERT INTO comments (user_id, content) VALUES (?, ?)`;
+  const values = [userId, content];
+
+  try {
+    const result = await query(sql, values);
+    return result.insertId;
+  } catch (error) {
+    throw new Error("Error CREATED Article");
+  }
+};

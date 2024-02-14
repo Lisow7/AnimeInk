@@ -1,4 +1,4 @@
-import { getAllComments, getOneComment } from "../databases/comments.db.js";
+import { getAllComments, getOneComment, findComment, addComment } from "../databases/comments.db.js";
 
 export const GetAllComments = async(req, res) => {
   try {
@@ -27,5 +27,32 @@ export const GetOneComment = async(req, res) => {
   }
   catch (error) {
     res.status(500).send("A Comment NOT FOUND");
+  }
+};
+
+export const CreateComment = async (req, res) => {
+  const { userId } = req.params
+  console.log( userId)
+  const { content } = req.body;
+  console.log( content)
+  
+ 
+  try {
+    const existingComment = await findComment(userId, content);
+
+    if (existingComment.length > 0) {
+      return res.status(409).json({
+        message: "Comment Already Exists !⚠️",
+        comment: existingComment[0],
+      });
+    } else {
+      const newComment = await addComment(req.body);
+      return res.status(201).json({
+        message: "Comment CREATED Successfully !⭕",
+        comment_id: newComment,
+      });
+    }
+  } catch (error) {
+    res.status(500).send("Error creating comment");
   }
 };
