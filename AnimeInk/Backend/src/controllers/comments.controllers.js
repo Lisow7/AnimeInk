@@ -1,44 +1,41 @@
-import { getAllComments, getOneComment, findComment, addComment } from "../databases/comments.db.js";
+import {
+  getAllComments,
+  getOneComment,
+  findComment,
+  addComment,
+} from "../databases/comments.db.js";
 
-export const GetAllComments = async(req, res) => {
+export const GetAllComments = async (req, res) => {
   try {
     const response = await getAllComments();
     if (response) {
       res.status(200).json(response);
-    }
-    else {
+    } else {
       res.status(404).message(" Comments not found");
     }
-  }
-  catch (error) {
+  } catch (error) {
     res.status(500).send("All Comments NOT FOUND");
   }
 };
 
-export const GetOneComment = async(req, res) => {
+export const GetOneComment = async (req, res) => {
   try {
     const response = await getOneComment();
     if (response) {
       res.status(200).json(response);
-    }
-    else {
+    } else {
       res.status(404).message(" Comment not found");
     }
-  }
-  catch (error) {
+  } catch (error) {
     res.status(500).send("A Comment NOT FOUND");
   }
 };
 
 export const CreateComment = async (req, res) => {
-  const { userId } = req.params
-  console.log( userId)
   const { content } = req.body;
-  console.log( content)
-  
- 
+
   try {
-    const existingComment = await findComment(userId, content);
+    const existingComment = await findComment(content);
 
     if (existingComment.length > 0) {
       return res.status(409).json({
