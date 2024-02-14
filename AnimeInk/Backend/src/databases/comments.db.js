@@ -34,3 +34,19 @@ export const getOneComment = async(id) => {
     return { error, result };
   }
 };
+
+export const TestComment = async () => {
+  const sql = `
+    SELECT * FROM comments`;
+
+  let error = null;
+  let result = null;
+
+  try {
+    result = await query(sql);
+  } catch (err) {
+    error = err.message;
+  } finally {
+    return { error, result };
+  }
+};
