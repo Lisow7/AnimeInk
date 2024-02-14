@@ -51,7 +51,7 @@ export const TestComment = async () => {
   }
 };
 
-export const findComment = async (api_url) => {
+export const findComment = async (user_id, content) => {
   const sql = `SELECT * FROM comments WHERE user_id, content = ?, ?`;
   const values = [user_id, content];
 
@@ -64,8 +64,8 @@ export const findComment = async (api_url) => {
 };
 
 export const addComment = async (commentData) => {
-  const { content } = commentData;
   const userId = req.params;
+  const { content } = commentData;
   const sql = `INSERT INTO comments (user_id, content) VALUES (?, ?)`;
   const values = [userId, content];
 
