@@ -24,8 +24,10 @@ export const getOneComment = async (id) => {
   let error = null;
   let result = null;
 
+
   try {
     result = await query(sql, [id]);
+    console.log(result);
   } catch (err) {
     error = err.message;
   } finally {
@@ -46,7 +48,7 @@ export const findComment = async (id) => {
 
 export const addComment = async (commentData) => {
   const { content } = commentData;
-  const sql = `INSERT INTO comments (content,) VALUES (?)`;
+  const sql = `INSERT INTO comments (content) VALUES (?)`;
   const values = [content];
 
   try {
