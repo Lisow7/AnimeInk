@@ -1,18 +1,40 @@
 import query from "./init.db.js";
 
-// Cette requêtes sera nécessaire pour généré un algorithmqui permettra de verifier si l'article n'est pas existants dans la base de données.
+// Fonction pour récupérer tous les articles
 export const getAllArticles = async () => {
-  const sql = `
-    SELECT * FROM articles`;
-
-  let error = null;
-  let result = null;
+  const sql = `SELECT * FROM articles`;
 
   try {
-    result = await query(sql);
-  } catch (err) {
-    error = err.message;
-  } finally {
-    return { error, result };
+    const result = await query(sql);
+    return result;
+  } catch (error) {
+    throw new Error("Error RETRIEVING Articles");
+  }
+};
+
+// Fonction pour vérifier si l'article existe déjà
+export const findArticle = async (api_url) => {
+  const sql = `SELECT * FROM articles WHERE api_url = ?`;
+  const values = [api_url];
+
+  try {
+    const result = await query(sql, values);
+    return result;
+  } catch (error) {
+    throw new Error("Error FINDING Article");
+  }
+};
+
+// Fonction pour créer un nouvel article
+export const addArticle = async (articleData) => {
+  const { api_url } = articleData;
+  const sql = `INSERT INTO articles (api_url) VALUES (?)`;
+  const values = [api_url];
+
+  try {
+    const result = await query(sql, values);
+    return result.insertId;
+  } catch (error) {
+    throw new Error("Error CREATED Article");
   }
 };
