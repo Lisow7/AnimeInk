@@ -21,7 +21,7 @@ export const findArticle = async (api_url) => {
     const result = await query(sql, values);
     return result;
   } catch (error) {
-    throw new Error("Error Finding Article");
+    throw new Error("Error FINDING Article");
   }
 };
 

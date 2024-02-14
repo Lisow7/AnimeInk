@@ -29,10 +29,10 @@ export const CreateArticle = async (req, res) => {
         article: existingArticle[0],
       });
     } else {
-      const newArticleId = await addArticle(req.body);
+      const newArticle = await addArticle(req.body);
       return res.status(201).json({
         message: "Article CREATED Successfully !⭕",
-        article_id: newArticleId,
+        article_id: newArticle,
       });
     }
   } catch (error) {
