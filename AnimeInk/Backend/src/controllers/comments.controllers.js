@@ -1,7 +1,6 @@
 import {
   getAllComments,
   getOneComment,
-  findComment,
   addComment,
 } from "../databases/comments.db.js";
 
@@ -37,15 +36,10 @@ export const CreateComment = async (req, res) => {
   const { content } = req.body;
 
   try {
-    const existingComment = await findComment(content);
-
-    if (existingComment.length > 0) {
-      return res.status(409).json({
-        message: "Comment Already Exists !⚠️",
-        comment: existingComment[0],
-      });
+    const newComment = await addComment({ content });
+    if (newComment === undefined) {
+      res.status(404).send("The comment could not be created ❌");
     } else {
-      const newComment = await addComment(req.body);
       return res.status(201).json({
         message: "Comment CREATED Successfully !⭕",
         comment_id: newComment,

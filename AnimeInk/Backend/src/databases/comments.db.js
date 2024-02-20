@@ -33,26 +33,19 @@ export const getOneComment = async (comment_id) => {
   }
 };
 
-export const findComment = async (id) => {
-  const sql = `SELECT * FROM comments WHERE comment_id = ?`;
-
-  try {
-    const result = await query(sql, [id]);
-    return result;
-  } catch (error) {
-    throw new Error("Error FINDING Comments");
-  }
-};
-
 export const addComment = async (commentData) => {
   const { content } = commentData;
-  const sql = `INSERT INTO comments (content,) VALUES (?)`;
+  const sql = `INSERT INTO comments (content) VALUES (?)`;
   const values = [content];
 
   try {
     const result = await query(sql, values);
-    return result.insertId;
+    if (result.affectedRows === 1) {
+      return result.insertId;
+    } else {
+      throw new Error("Error creating COMMENT");
+    }
   } catch (error) {
-    throw new Error("Error CREATED Comments");
+    throw new Error("Error creating comment: " + error.message);
   }
 };
