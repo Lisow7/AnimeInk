@@ -2,18 +2,20 @@ import {
   getAllComments,
   getOneComment,
   addComment,
+  updateComment,
+  deleteComment,
 } from "../databases/comments.db.js";
 
 export const GetAllComments = async (req, res) => {
   try {
     const response = await getAllComments();
     if (response) {
-      res.status(200).json(response);
+      res.status(200).json(response, "⭕");
     } else {
-      res.status(404).message(" Comments not found");
+      res.status(404).message(" Comments not found ❌");
     }
   } catch (error) {
-    res.status(500).send("All Comments NOT FOUND");
+    res.status(500).send("Error GET ALL comments 🚫");
   }
 };
 
@@ -23,12 +25,12 @@ export const GetOneComment = async (req, res) => {
     const response = await getOneComment(comment_id);
 
     if (response.result && response.result.length > 0) {
-      res.status(200).json(response.result);
+      res.status(200).json(response.result, "⭕");
     } else {
-      res.status(404).send("Comment not found");
+      res.status(404).send("Comment not found ❌");
     }
   } catch (error) {
-    res.status(500).send("Internal Server Error");
+    res.status(500).send("Error GET ONE comment 🚫");
   }
 };
 
@@ -47,6 +49,39 @@ export const CreateComment = async (req, res) => {
       });
     }
   } catch (error) {
-    res.status(500).send("Error creating comment");
+    res.status(500).send("Error CREATING comment 🚫");
+  }
+};
+
+export const UpdateComment = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { content } = req.body;
+
+    const response = await updateComment(content, id);
+    if (response) {
+      res
+        .status(202)
+        .json({ message: "Comment UPDATE successfully ⭕", response });
+    } else {
+      res.status(404).send("Comment not UPDATED ❌");
+    }
+  } catch (error) {
+    res.status(500).send("Error UPDATING comment 🚫");
+  }
+};
+
+export const DeleteComment = async (req, res) => {
+  try {
+    const comment_id = req.params.id;
+    const response = await deleteComment(comment_id);
+
+    if (response.result && response.result.affectedRows > 0) {
+      res.status(202).json({ message: "Comment DELETE successfully ⭕" });
+    } else {
+      res.status(404).send("Comment not DELETED ❌");
+    }
+  } catch (error) {
+    res.status(500).send("Error DELETING comment 🚫");
   }
 };
