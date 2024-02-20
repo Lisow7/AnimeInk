@@ -43,6 +43,7 @@ export const CreateComment = async (req, res) => {
       return res.status(201).json({
         message: "Comment CREATED Successfully !⭕",
         comment_id: newComment,
+        content: content,
       });
     }
   } catch (error) {
