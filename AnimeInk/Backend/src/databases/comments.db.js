@@ -16,16 +16,16 @@ export const getAllComments = async () => {
   }
 };
 
-export const getOneComment = async (id) => {
+export const getOneComment = async (comment_id) => {
   const sql = `
-  SELECT * FROM comments WHERE comment_id
+    SELECT * FROM comments WHERE comment_id = ?
   `;
 
   let error = null;
   let result = null;
 
   try {
-    result = await query(sql, [id]);
+    result = await query(sql, [comment_id]);
   } catch (err) {
     error = err.message;
   } finally {
