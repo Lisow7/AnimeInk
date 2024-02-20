@@ -10,12 +10,12 @@ export const GetAllComments = async (req, res) => {
   try {
     const response = await getAllComments();
     if (response) {
-      res.status(200).json(response, "⭕");
+      res.status(200).json({ data: response, message: "⭕" });
     } else {
-      res.status(404).message(" Comments not found ❌");
+      res.status(404).json({ message: "Comments not found ❌" });
     }
   } catch (error) {
-    res.status(500).send("Error GET ALL comments 🚫");
+    res.status(500).json({ message: "Error GET ALL comments 🚫" });
   }
 };
 
@@ -25,12 +25,12 @@ export const GetOneComment = async (req, res) => {
     const response = await getOneComment(comment_id);
 
     if (response.result && response.result.length > 0) {
-      res.status(200).json(response.result, "⭕");
+      res.status(200).json({ data: response.result, message: "⭕" });
     } else {
-      res.status(404).send("Comment not found ❌");
+      res.status(404).json({ message: "Comment not found ❌" });
     }
   } catch (error) {
-    res.status(500).send("Error GET ONE comment 🚫");
+    res.status(500).json({ message: "Error GET ONE comment 🚫" });
   }
 };
 
@@ -40,7 +40,7 @@ export const CreateComment = async (req, res) => {
   try {
     const newComment = await addComment({ content });
     if (newComment === undefined) {
-      res.status(404).send("The comment could not be created ❌");
+      res.status(404).json({ message: "The comment could not be created ❌" });
     } else {
       return res.status(201).json({
         message: "Comment CREATED Successfully !⭕",
@@ -49,7 +49,7 @@ export const CreateComment = async (req, res) => {
       });
     }
   } catch (error) {
-    res.status(500).send("Error CREATING comment 🚫");
+    res.status(500).json({ message: "Error CREATING comment 🚫" });
   }
 };
 
@@ -64,10 +64,10 @@ export const UpdateComment = async (req, res) => {
         .status(202)
         .json({ message: "Comment UPDATE successfully ⭕", response });
     } else {
-      res.status(404).send("Comment not UPDATED ❌");
+      res.status(404).json({ message: "Comment not UPDATED ❌" });
     }
   } catch (error) {
-    res.status(500).send("Error UPDATING comment 🚫");
+    res.status(500).json({ message: "Error UPDATING comment 🚫" });
   }
 };
 
@@ -79,9 +79,9 @@ export const DeleteComment = async (req, res) => {
     if (response.result && response.result.affectedRows > 0) {
       res.status(202).json({ message: "Comment DELETE successfully ⭕" });
     } else {
-      res.status(404).send("Comment not DELETED ❌");
+      res.status(404).json({ message: "Comment not DELETED ❌" });
     }
   } catch (error) {
-    res.status(500).send("Error DELETING comment 🚫");
+    res.status(500).json({ message: "Error DELETING comment 🚫" });
   }
 };

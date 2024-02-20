@@ -1,5 +1,3 @@
-// controllers/articles.controllers.js
-
 import {
   getAllArticles,
   findArticle,
@@ -10,9 +8,9 @@ import {
 export const GetAllArticles = async (req, res) => {
   try {
     const articles = await getAllArticles();
-    res.status(200).json(articles);
+    res.status(200).json({ data: articles, message: "⭕" });
   } catch (error) {
-    res.status(500).send("Error retrieving articles");
+    res.status(500).json({ message: "Error retrieving articles 🚫" });
   }
 };
 
@@ -36,6 +34,6 @@ export const CreateArticle = async (req, res) => {
       });
     }
   } catch (error) {
-    res.status(500).send("Error creating article");
+    res.status(500).json({ message: "Error creating article 🚫" });
   }
 };

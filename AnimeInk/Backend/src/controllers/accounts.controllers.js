@@ -13,13 +13,13 @@ export const Register = async (req, res) => {
     const response = await register({ email, password, username });
 
     if (response.error) {
-      return res.status(404).json({ message: "Failed to register user" });
+      return res.status(404).json({ message: "Failed to register user ❌" });
     }
 
     const userId = response.result.insertId;
 
-    return res.status(201).json({ message: "User created", user: userId });
+    return res.status(201).json({ message: "User created ⭕", user: userId });
   } catch (error) {
-    return res.status(500).json({ message: "Internal Server Error" });
+    return res.status(500).json({ message: "Internal Server Error 🚫" });
   }
 };
