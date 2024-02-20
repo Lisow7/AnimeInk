@@ -1,11 +1,12 @@
 import express from "express";
-import { GetAllComments, GetOneComment } from "../controllers/comments.controllers.js";
+import { GetAllComments, GetOneComment, CreateComment } from "../controllers/comments.controllers.js";
 
 const initCommentsRoutes = (app) => {
   const router = express.Router();
   
   router.get("/all", GetAllComments);
   router.get("/comment/:id", GetOneComment);
+  router.post("/add", CreateComment);
 
   app.use("/comments", router);
 };
