@@ -39,20 +39,20 @@ export const findUserByEmail = async (email) => {
   }
 };
 
-// export const login = async (email) => {
-//   const sql = `
-//     SELECT user_id, email, password
-//     FROM users
-//     WHERE email = ?`;
+export const login = async (email) => {
+  const sql = `
+    SELECT user_id, email, password
+    FROM users
+    WHERE email = ?`;
 
-//   let error = null;
-//   let result = null;
+  let error = null;
+  let result = null;
 
-//   try {
-//     result = await query(sql, [email]);
-//   } catch (err) {
-//     error = err.message;
-//   } finally {
-//     return { error, result };
-//   }
-// };
+  try {
+    result = await query(sql, [email]);
+  } catch (err) {
+    error = err.message;
+  } finally {
+    return { error, result };
+  }
+};

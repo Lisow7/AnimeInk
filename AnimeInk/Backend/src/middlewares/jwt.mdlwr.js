@@ -1,41 +1,34 @@
-// import jwt from "jsonwebtoken";
+import { verify, sign } from "jsonwebtoken";
 
-// const jwtOptions = { expiresIn: 28800000 };
-// // Equivaut à 8H
+const jwtOptions = { expiresIn: 28800000 };
+const secret = process.env.JWT_SECRET || "T0P_S3CRet";
 
-// //Si la valeur booleenne de process.env.JWT_SECRET est false alors secret vaudra "T0P_S3CRet" sinon secret vaudra la valeur du fichier .env
-// const secret = process.env.JWT_SECRET || "T0P_S3CRet";
+// Middleware pour créer et vérifier les tokens JWT
+const jwtMdlwr = (req, res, next) => {
+  const token = req.headers.authorization;
 
-// // SI process.env.JWT_SECRET est null ou indefined alors secret vaudre "T0P_S3CRet" sinon secret vaudra la valeur du fichiert .env
-// //const secret = process.env.JWT_SECRET ?? "T0P_S3CRet";
+  const userId = jwtVerify(token);
 
-// const jwtMdlwr = (req, res, next) => {
-//     const token = req.headers.authorization;
+  if (!userId) return res.status(401).json({ message: "Invalid Token" });
 
-//     const userId = jwtVerify(token);
+  req.body.userId = userId;
 
-//     if (!userId) return res.status(401).json({ message: "Invalid Token" });
+  next();
+};
 
-//     req.body.userId = userId;
+const jwtVerify = (token) => {
+  try {
+    const decoded = verify(token, secret);
+    const userId = decoded.data;
+    return userId;
+  } catch (err) {
+    console.error(`jwt.mdlwr.js - jwtVerify - error => `, err.message);
+    return null;
+  }
+};
 
-//     next();
-// };
+// Fonction pour signer le token JWT avec un payload contenant "username" et "avatar"
+export const jwtSign = (data, username, avatar) =>
+  sign({ data, username, avatar }, secret, jwtOptions);
 
-// const jwtVerify = (token) => {
-//     try {
-//         const decoded = jwt.verify(token, secret);
-//         const userId = decoded.data;
-//         return userId;
-//     }
-//     catch (err) {
-//         console.error(`jwt.mdlwr.js - jwtVerify - error => `, err.message);
-//         return null;
-//     }
-// };
-
-// export const jwtSign = (data) => jwt.sign({ data }, secret, jwtOptions);
-// // payload = {data: userId } A FAIRE !!
-
-// export default jwtMdlwr;
-
-// // Faire le lien entre la verification d'email preente dans la base de données.
+export default jwtMdlwr;
