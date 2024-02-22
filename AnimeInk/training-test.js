@@ -11,3 +11,15 @@ const addition = (a, b) => {
 
 // Utilisation de la fonction
 console.log(addition(3, 5)); // Affiche 8
+
+////////////////////////////////////////////////////////////////////////////////
+
+// Fonction N°2
+// Déclaration d'une fonction fléchée basique qui prend deux paramètres et renvoie leur soustraction:
+
+const soustraction = (a, b) => {
+  return a - b;
+};
+
+// Utilisation de la fonction
+console.log(soustraction(5, 3)); // Affiche 2
