@@ -1,4 +1,4 @@
-import { verify, sign } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 const jwtOptions = { expiresIn: 28800000 };
 const secret = process.env.JWT_SECRET || "T0P_S3CRet";
@@ -18,7 +18,7 @@ const jwtMdlwr = (req, res, next) => {
 
 const jwtVerify = (token) => {
   try {
-    const decoded = verify(token, secret);
+    const decoded = jwt.verify(token, secret);
     const userId = decoded.data;
     return userId;
   } catch (err) {
@@ -29,6 +29,6 @@ const jwtVerify = (token) => {
 
 // Fonction pour signer le token JWT avec un payload contenant "username" et "avatar"
 export const jwtSign = (data, username, avatar) =>
-  sign({ data, username, avatar }, secret, jwtOptions);
+  jwt.sign({ data, username, avatar }, secret, jwtOptions);
 
 export default jwtMdlwr;

@@ -3,11 +3,11 @@ import { compareHash } from "../utils/crypto.utils.js";
 // Middleware pour comparer le mot de passe haché stocké en base de données avec le mot de passe non haché fourni dans la requête
 export const compareHashPassword = async (req, res, next) => {
   const { password } = req.body;
-  const { dbPassword } = req.user; // Si ça ne fonctionne pas mettre "users" à la place ?
+  const { users } = req.body.users; // Si ça ne fonctionne pas mettre "users" à la place ?
 
   try {
     // Comparaison des mots de passe
-    const passwordAreSame = await compareHash(password, dbPassword);
+    const passwordAreSame = await compareHash(password, users);
 
     if (!passwordAreSame) {
       return res.status(401).json({ message: `Authentication failed` });

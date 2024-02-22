@@ -1,9 +1,10 @@
 import express from "express";
-import { Register } from "../controllers/accounts.controllers.js";
+import { Register, Login } from "../controllers/accounts.controllers.js";
 import { verifyFormatEmail } from "../middlewares/verifyFormatEmail.mdlwr.js";
 import { verifyEmailIsExist } from "../middlewares/verifyEmailIsExist.mdlwr.js";
 import { verifyPasswordFormat } from "../middlewares/verifyPasswordFormat.mdlwr.js";
 import { hashPassword } from "../middlewares/hashPassword.mdlwr.js";
+import { compareHashPassword } from "../middlewares/comparePassword.mdlwr.js";
 
 const initAccountRoutes = (app) => {
   const router = express.Router();
@@ -19,13 +20,7 @@ const initAccountRoutes = (app) => {
   );
 
   // Ajout des middlewares verifyEmailIsExist, verifyPasswordFormat et compareHashPassword à la route POST "/sign-in"
-  router.post(
-    "/sign-in",
-    verifyEmailIsExist,
-    verifyPasswordFormat,
-    compareHashPassword,
-    Login
-  );
+  router.post("/sign-in", verifyPasswordFormat, compareHashPassword, Login);
 
   app.use("/account", router);
 };
