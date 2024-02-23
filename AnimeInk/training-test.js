@@ -23,3 +23,15 @@ const soustraction = (a, b) => {
 
 // Utilisation de la fonction
 console.log(soustraction(5, 3)); // Affiche 2
+
+////////////////////////////////////////////////////////////////////////////////
+
+// Fonction N°3
+// Déclaration d'une fonction fléchée basique qui prend deux paramètres et renvoie leur multiplication:
+
+const multiply = (a, b) => {
+  return a * b;
+};
+
+// Utilisation de la fonction
+console.log(multiply(5, 3)); // Affiche 15
