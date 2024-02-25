@@ -1,4 +1,6 @@
 import mysql from "mysql";
+import dotenv from "dotenv";
+dotenv.config();
 
 const { DB_HOST, DB_USER, DB_PASS, DB_NAME } = process.env;
 
@@ -9,6 +11,11 @@ const pool = mysql.createPool({
   password: DB_PASS,
   database: DB_NAME,
 });
+
+console.log("DB_HOST:", DB_HOST);
+console.log("DB_USER:", DB_USER);
+console.log("DB_PASS:", DB_PASS);
+console.log("DB_NAME:", DB_NAME);
 
 const query = (sql, values = []) => {
   return new Promise((resolve, reject) => {
