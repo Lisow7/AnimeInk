@@ -66,8 +66,8 @@ INSERT INTO `articles` (`article_id`, `api_url`) VALUES
 DROP TABLE IF EXISTS `articles_users`;
 
 CREATE TABLE `articles_users` (
-  `article_id` INT(11) NOT NULL,
-  `user_id` INT(11) NOT NULL,
+  `article_id` INT(11) NULL,
+  `user_id` INT(11) NULL,
 FOREIGN KEY (`article_id`) REFERENCES `articles` (`article_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
 FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -78,8 +78,8 @@ INSERT INTO `articles_users` (`article_id`, `user_id`) VALUES
 DROP TABLE IF EXISTS `articles_comments`;
 
 CREATE TABLE `articles_comments` (
-  `article_id` INT(11) NOT NULL,
-  `comment_id` INT(11) NOT NULL,
+  `article_id` INT(11) NULL,
+  `comment_id` INT(11) NULL,
 FOREIGN KEY (`article_id`) REFERENCES `articles` (`article_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
 FOREIGN KEY (`comment_id`) REFERENCES `comments` (`comment_id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
