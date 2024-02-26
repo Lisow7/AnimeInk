@@ -23,7 +23,7 @@ export const compareHash = async (passNotHashed, passHashed) => {
   try {
     isSame = await bcrypt.compare(passNotHashed, passHashed);
   } catch (err) {
-    console.error(err.message);
+    err(err.message);
   } finally {
     return isSame;
   }
