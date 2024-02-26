@@ -47,3 +47,16 @@ const modulo = (a, b) => {
 
 // Utilisation de la fonction
 console.log(modulo(5, 3)); // Affiche 2
+
+/////////////////////////////////////////////////////////////////////////////////
+
+//fonction n°5
+
+function maxTrois(a, b, c) {
+  return Math.max(a, b, c);
+}
+
+let plusGrand = maxTrois(10, 5, 8); // plusGrand sera égal à 10
+console.log(plusGrand);
+
+/////////////////////////////////////////////////////////////////////////////////
