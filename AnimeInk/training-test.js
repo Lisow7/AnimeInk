@@ -60,3 +60,18 @@ let plusGrand = maxTrois(10, 5, 8); // plusGrand sera égal à 10
 console.log(plusGrand);
 
 /////////////////////////////////////////////////////////////////////////////////
+
+// Fonction n°6
+
+function estPairOuImpair(nombre) {
+  if (nombre % 2 === 0) {
+    return "Pair";
+  } else {
+    return "Impair";
+  }
+}
+
+console.log(estPairOuImpair(4)); // Renvoie "Pair"
+console.log(estPairOuImpair(7)); // Renvoie "Impair"
+
+///////////////////////////////////////////////////////////////////////////
