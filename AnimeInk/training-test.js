@@ -75,3 +75,32 @@ console.log(estPairOuImpair(4)); // Renvoie "Pair"
 console.log(estPairOuImpair(7)); // Renvoie "Impair"
 
 ///////////////////////////////////////////////////////////////////////////
+
+// Fonction N°7
+
+function voter(choix) {
+  if (choix.toLowerCase() === "oui") {
+    console.log("Vous avez voté oui !");
+  } else if (choix.toLowerCase() === "non") {
+    console.log("Vous avez voté non !");
+  } else {
+    console.log("Veuillez saisir 'oui' ou 'non'.");
+  }
+}
+
+voter("oui"); // Affichera "Vous avez voté oui !"
+voter("Non"); // Affichera "Vous avez voté non !"
+voter("peut-être"); // Affichera "Veuillez saisir 'oui' ou 'non'."
+
+///////////////////////////////////////////////////////////////////////////
+
+// Fonction N°8
+
+let compteurLikes = 0;
+
+function incrementerLikes() {
+  compteurLikes++;
+  console.log("Nombre de likes : " + compteurLikes);
+}
+
+//////////////////////////////////////////////////////////////////////////
