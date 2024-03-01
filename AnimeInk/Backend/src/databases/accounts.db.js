@@ -5,18 +5,21 @@ export const register = async (newAccount) => {
   const { username, email, password } = newAccount;
 
   // Hacher le mot de passe
-  const { hashed } = await hashPass(password);
+  const { Error: hashError, hashed } = await hashPass(password);
+
+  if (hashError) {
+    return { error: hashError, result: null };
+  }
 
   const sql = `
-      INSERT INTO users (username, email, password, role_id)
-      VALUES (?, ?, ?, ?)`;
+      INSERT INTO users (username, email, password)
+      VALUES (?, ?, ?)`;
 
   let error = null;
   let result = null;
 
   try {
-    const password = hashed;
-    result = await query(sql, [username, email, password, role_id]);
+    result = await query(sql, [username, email, hashed]);
     return result;
   } catch (err) {
     error = err.message;
