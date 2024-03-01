@@ -33,7 +33,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `avatar`, `role_id`) VALUES
 (1, 'Kira', 'kira@exemple.com', '$2b$10$1jBdUzRtLb1O.rbOz.NHVeVC9NTRMPmKc67UJtXKatI9MV2WRzGXK', 'https://img.freepik.com/photos-gratuite/illustration-3d-adolescent-visage-drole-lunettes_1142-50955.jpg?w=1380&t=st=1706976198~exp=1706976798~hmac=079d7c92230593a5d358cf5a13965108a41e4b8754febe010b62b7e0677641ca', 2),
 (2, 'Lisow', 'lisow@exemple.com', '$2b$10$9WsCR3XhotyjqVHlrPeW1OK9ljCVrBEgjlyLSf/Mzc10P70UvD.HK','https://img.freepik.com/photos-gratuite/personnage-dessin-anime-3d_23-2151034097.jpg?w=1380&t=st=1706976079~exp=1706976679~hmac=12b781600372dbae6b48c00957f8b6d8b8c50b5d231dde045087d8625dbac8de', 2),
-(3, 'Admin', 'admin@anime_ink.fr', '$2b$10$mvgx2WgFh3YDxF4miQyOR.8kKIipSO8bpWhO2TvRC5IuGv0qB4LD2','https://img.freepik.com/free-vector/flat-design-illustration-customer-support_23-2148887720.jpg?w=740&t=st=1709291965~exp=1709292565~hmac=eb62cc8b8780f27ad973e180b8a40f2a57ebbc221d0ca33aa1fdfe94b80b663c', 1);
+(3, 'Admin', 'admin@animeink.com', '$2b$10$mvgx2WgFh3YDxF4miQyOR.8kKIipSO8bpWhO2TvRC5IuGv0qB4LD2','https://img.freepik.com/free-vector/flat-design-illustration-customer-support_23-2148887720.jpg?w=740&t=st=1709291965~exp=1709292565~hmac=eb62cc8b8780f27ad973e180b8a40f2a57ebbc221d0ca33aa1fdfe94b80b663c', 1);
 
 ALTER TABLE users
 ADD CONSTRAINT unique_email UNIQUE (email);

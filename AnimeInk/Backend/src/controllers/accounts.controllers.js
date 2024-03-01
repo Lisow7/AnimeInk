@@ -58,7 +58,7 @@ export const Login = async (req, res) => {
 
     // Générer un token JWT pour l'utilisateur authentifié
     const payload = {
-      userId: user.id, // Ajouter l'ID de l'utilisateur au payload
+      user_id: user.user_id,
       email: user.email,
       username: user.username,
       avatar: user.avatar,
