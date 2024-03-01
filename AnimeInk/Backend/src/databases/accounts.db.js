@@ -5,21 +5,18 @@ export const register = async (newAccount) => {
   const { username, email, password } = newAccount;
 
   // Hacher le mot de passe
-  const { Error: hashError, hashed } = await hashPass(password);
-
-  if (hashError) {
-    return { error: hashError, result: null };
-  }
+  const { hashed } = await hashPass(password);
 
   const sql = `
-      INSERT INTO users (username, email, password)
-      VALUES (?, ?, ?)`;
+      INSERT INTO users (username, email, password, role_id)
+      VALUES (?, ?, ?, ?)`;
 
   let error = null;
   let result = null;
 
   try {
-    result = await query(sql, [username, email, hashed]); // Utiliser le mot de passe hashé
+    const password = hashed;
+    result = await query(sql, [username, email, password, role_id]);
     return result;
   } catch (err) {
     error = err.message;
@@ -29,30 +26,18 @@ export const register = async (newAccount) => {
 };
 
 export const findUserByEmail = async (email) => {
-  const sql = `SELECT email FROM users WHERE email = ?`;
+  const sql = `SELECT * FROM users WHERE email = ?`;
+
+  let error = null;
+  let result = null;
 
   try {
-    const [response] = await query(sql, [email]);
-    return response;
+    result = await query(sql, [email]);
+    result = result[0];
   } catch (err) {
-    throw new Error("Failed to get user by email", err);
+    error = err.message;
+    throw new Error(`Failed to get user by email: ${error}`);
+  } finally {
+    return { error, result };
   }
 };
-
-// export const login = async (email) => {
-//   const sql = `
-//     SELECT user_id, email, password
-//     FROM users
-//     WHERE email = ?`;
-
-//   let error = null;
-//   let result = null;
-
-//   try {
-//     result = await query(sql, [email]);
-//   } catch (err) {
-//     error = err.message;
-//   } finally {
-//     return { error, result };
-//   }
-// };
