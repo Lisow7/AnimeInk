@@ -8,31 +8,20 @@ export const jwtOptions = { expiresIn: 28800 }; // 8 heures
 export const secretKey = process.env.JWT_SECRET || "T0P_S3CRet";
 
 export const Register = async (req, res) => {
-  const { email, password, username, role_id } = req.body;
+  const { email, password, username } = req.body;
 
   try {
-    const [response] = await register({ email, password, username, role_id });
+    const response = await register({ email, password, username });
 
     if (response.error) {
-      return res.status(403).json({
-        success: false,
-        message: "Failed to register user ❌",
-        error: response.error,
-      });
+      return res.status(404).json({ message: "Failed to register user ❌" });
     }
 
     const userId = response.result.insertId;
 
-    return res
-      .status(201)
-      .json({ success: true, message: "User created ⭕", userId });
+    return res.status(201).json({ message: "User created ⭕", user: userId });
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({
-      success: false,
-      message: "Internal Server Error 🚫",
-      error: error.message,
-    });
+    return res.status(500).json({ message: "Internal Server Error 🚫" });
   }
 };
 
