@@ -8,12 +8,6 @@ const jwtOptions = { expiresIn: 28800000 }; // Equivaut à 8H
 
 const secretKey = process.env.JWT_SECRET || "T0P_S3CRet";
 
-// import { compareHash } from "../utils/crypto.utils.js";
-
-// import { jwtSign } from "../middlewares/jwt.mdlwr.js";
-
-// import { stringIsFilled } from "../utils/string.utils.js";
-
 export const Register = async (req, res) => {
   const { email, password, username } = req.body;
 
@@ -26,7 +20,10 @@ export const Register = async (req, res) => {
 
     const userId = response.result.insertId;
 
-    return res.status(201).json({ message: "User created ⭕", user: userId });
+    return res.status(201).json({
+      message: "User created ⭕",
+      user: userId,
+    });
   } catch (error) {
     return res.status(500).json({ message: "Internal Server Error 🚫" });
   }
@@ -36,28 +33,18 @@ export const Login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const { error, result: user } = await login(email);
+    const { result: user } = await login(email);
 
-    console.log("User from DB:", user);
-
-    if (error || !user) {
-      console.error("Error finding user:", error);
+    if (!user) {
       return res.status(401).json({
         success: false,
         message: "Invalid email or password 🚧",
-        error,
       });
     }
 
-    console.log("Password from request:", password);
-    console.log("Stored Password:", user.password);
-
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
-    console.log("isPasswordValid:", isPasswordValid);
-
     if (!isPasswordValid) {
-      console.log("Entered if statement");
       return res
         .status(401)
         .json({ success: false, message: "Invalid email or password 🚧" });
@@ -72,8 +59,6 @@ export const Login = async (req, res) => {
       role_id: user.role_id,
     };
 
-    console.log("Data Payload 📥", payload);
-
     const token = jwt.sign(payload, secretKey, jwtOptions);
 
     // Supprimer le mot de passe du corps de la requête avant de le renvoyer au client
@@ -81,9 +66,8 @@ export const Login = async (req, res) => {
 
     return res
       .status(200)
-      .json({ success: true, message: "Login successful ✔️", token });
+      .json({ success: true, message: "Login successful ✅", token });
   } catch (error) {
-    console.error("Login error:", error);
     return res.status(500).json({
       success: false,
       message: "Internal Server Error 🚫",

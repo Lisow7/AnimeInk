@@ -19,12 +19,12 @@ export const register = async (newAccount) => {
   let result = null;
 
   try {
-    result = await query(sql, [username, email, hashed]); // Utiliser le mot de passe hashé
+    result = await query(sql, [username, email, hashed]);
     return result;
   } catch (err) {
     error = err.message;
   } finally {
-    return { error: error, result };
+    return { info: error, result };
   }
 };
 
