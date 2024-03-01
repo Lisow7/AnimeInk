@@ -1,5 +1,5 @@
 import express from "express";
-import { Register } from "../controllers/accounts.controllers.js";
+import { Register, Login } from "../controllers/accounts.controllers.js";
 import { verifyFormatEmail } from "../middlewares/verifyFormatEmail.mdlwr.js";
 import { verifyEmailIsExist } from "../middlewares/verifyEmailIsExist.mdlwr.js";
 import { verifyPasswordFormat } from "../middlewares/verifyPasswordFormat.mdlwr.js"; // Ajoutez cette ligne
@@ -16,6 +16,8 @@ const initAccountRoutes = (app) => {
     hashPassword,
     Register
   );
+
+  router.post("/sign-in", verifyFormatEmail, verifyPasswordFormat, Login);
 
   app.use("/account", router);
 };
