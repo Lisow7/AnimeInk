@@ -1,15 +1,11 @@
 import query from "./init.db.js";
-import { hashPass } from "../utils/crypto.utils.js";
 
-export const register = async (newAccount) => {
-  const { username, email, password } = newAccount;
+export const register = async (user) => {
+  // Récupère les données (email et username) de l'utilisateur via les innputs client ou ThunderCLient et/ou autres...
+  const { username, email } = user;
 
-  // Hacher le mot de passe
-  const { Error: hashError, hashed } = await hashPass(password);
-
-  if (hashError) {
-    return { error: hashError, result: null };
-  }
+  // Récupère le password de l'utilisateur qui a été hasher dans la requête pour la bdd.
+  const hashedPassword = user.hashedPassword;
 
   const sql = `
       INSERT INTO users (username, email, password)
@@ -19,7 +15,8 @@ export const register = async (newAccount) => {
   let result = null;
 
   try {
-    result = await query(sql, [username, email, hashed]);
+    // Ajout du password hashé [hashedPassword] à la place du [password] en dur.
+    result = await query(sql, [username, email, hashedPassword]);
     return result;
   } catch (err) {
     error = err.message;
