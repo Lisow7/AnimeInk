@@ -35,6 +35,7 @@ export const login = async (email) => {
   let result = null;
 
   try {
+    // Récupère les données de l'utilisateur de la bdd via l'email remplit dans l'input client(formulaire) ou ThunderCLient et/ou autres...
     result = await query(sql, [email]);
     result = result[0];
   } catch (err) {

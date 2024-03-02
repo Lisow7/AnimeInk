@@ -24,9 +24,11 @@ export const Register = async (req, res) => {
 };
 
 export const Login = async (req, res) => {
+  // Récupère l'entrée de l'utilisateur via les innputs client ou ThunderCLient et/ou autres...
   const { email, password } = req.body;
 
   try {
+    // Récupère le compte utilisateur via l'email.
     const { result: user } = await login(email);
 
     if (!user) {
@@ -36,6 +38,7 @@ export const Login = async (req, res) => {
       });
     }
 
+    // Compare les deux password et vérifie qu'ils sont compatibles.
     const isPasswordValid = await compareHash(password, user.password);
 
     if (!isPasswordValid) {
@@ -44,6 +47,7 @@ export const Login = async (req, res) => {
         .json({ success: false, message: "Invalid email or password 🚧" });
     }
 
+    // Création du payload, pas besoin de crée la secretKey et jwtOptions, ils sont directement crée depuis le jwt.mdlwr.js
     const payload = {
       user_id: user.user_id,
       email: user.email,
@@ -52,9 +56,10 @@ export const Login = async (req, res) => {
       role_id: user.role_id,
     };
 
+    // Génération du token avec le payload.
     const token = generateToken(payload);
 
-    // Supprimer le mot de passe du corps de la requête avant de le renvoyer au client
+    // Supprime le mot de passe du corps de la requête avant de le renvoyer au client pour une meilleur sécurité.
     delete req.body.password;
 
     return res
