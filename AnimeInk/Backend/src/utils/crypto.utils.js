@@ -18,13 +18,10 @@ export const hashPass = async (pass) => {
 };
 
 export const compareHash = async (passNotHashed, passHashed) => {
-  let isSame = false;
-
   try {
-    isSame = await bcrypt.compare(passNotHashed, passHashed);
+    return await bcrypt.compare(passNotHashed, passHashed);
   } catch (err) {
-    err(err.message);
-  } finally {
-    return isSame;
+    console.error(err.message);
+    return false;
   }
 };

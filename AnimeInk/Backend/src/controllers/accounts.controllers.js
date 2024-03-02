@@ -1,12 +1,6 @@
 import { register, login } from "../databases/accounts.db.js";
-
-import bcrypt from "bcrypt";
-
-import jwt from "jsonwebtoken";
-
-const jwtOptions = { expiresIn: 28800000 }; // Equivaut à 8H
-
-const secretKey = process.env.JWT_SECRET || "T0P_S3CRet";
+import { compareHash } from "../utils/crypto.utils.js";
+import { generateToken } from "../middlewares/jwt.mdlwr.js";
 
 export const Register = async (req, res) => {
   const { email, password, username } = req.body;
@@ -42,7 +36,7 @@ export const Login = async (req, res) => {
       });
     }
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await compareHash(password, user.password);
 
     if (!isPasswordValid) {
       return res
@@ -50,7 +44,6 @@ export const Login = async (req, res) => {
         .json({ success: false, message: "Invalid email or password 🚧" });
     }
 
-    // Générer un token JWT pour l'utilisateur authentifié
     const payload = {
       user_id: user.user_id,
       email: user.email,
@@ -59,7 +52,7 @@ export const Login = async (req, res) => {
       role_id: user.role_id,
     };
 
-    const token = jwt.sign(payload, secretKey, jwtOptions);
+    const token = generateToken(payload);
 
     // Supprimer le mot de passe du corps de la requête avant de le renvoyer au client
     delete req.body.password;
