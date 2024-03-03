@@ -112,3 +112,16 @@ function genererNombreAleatoire(min, max) {
 }
 
 ////////////////////////////////////////////////////////////////////////////
+
+// Fonction N°10
+
+function sommeChiffres(nombre) {
+  let somme = 0;
+  while (nombre !== 0) {
+    somme += nombre % 10; // Ajoute le dernier chiffre à la somme
+    nombre = Math.floor(nombre / 10); // Supprime le dernier chiffre du nombre
+  }
+  return somme;
+}
+
+/////////////////////////////////////////////////////////////////////////////
