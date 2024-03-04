@@ -1,0 +1,34 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+html {
+  /* Améliorations de la visibilé du texte sur Mozilla et Chrome */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Dissimulation de la scrollbar */
+  scrollbar-width: none;
+  scrollbar-color: transparent;
+
+  /* Dissimulation de la scrollbar sur Explorer & Mozilla */
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+acronym {
+  text-decoration: none;
+}

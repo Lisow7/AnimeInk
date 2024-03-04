@@ -1,0 +1,50 @@
+// FONT-FAMILY
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+$font-family: "Poppins", sans-serif; // A changer !!!
+
+// COLORS
+$primary: #fdfdfd; // A changer !!!
+$secondary: #353535; // A changer !!!
+$third: #a3a3a3; // A changer !!!
+
+$light: #fff;
+$dark: #000;
+
+$success: #04ff00;
+$warning: #ffbf00;
+$error: #ff0000;
+
+// FONT-SIZE
+$title: 3rem; // h1 / .title
+$title: 2.15rem; // h2 / .subtitle
+$sub-title: 1.5rem; // txt-p2
+$font-intial: 1rem; // txt-p1 & txt-p3
+
+$weight5: 500;
+$weight6: 600;
+
+// TRANSITION
+$app-transition: all 300ms ease-in-out;
+
+// CURSOR
+$pointer: pointer;
+
+// SCREEN-SIZE
+$screen-min-xxl: 1920px; // 2K
+$screen-min-xl: 1366px; // FULL HD
+$screen-min-l: 1024px; // HD
+$screen-min-m: 768px; // TABLET
+$screen-min-s: 1px; // s > PHONE
+
+$screen-max-xl: 1919px; // FULL HD
+$screen-max-l: 1365px; // HD
+$screen-max-m: 1023px; // TABLET
+$screen-max-s: 767px; // s > PHONE
+
+// MEDIA-QUERIES
+$desktopLarge: "only screen and (min-width: #{$screen-min-xxl})";
+$desktopMedium: "only screen and (min-width: #{$screen-min-xl}) and (max-width: #{$screen-max-xl})";
+$desktopSmall: "only screen and (min-width: #{$screen-min-l}) and (max-width: #{$screen-max-l})";
+$tablet: "only screen and (min-width:#{$screen-min-m}) and (max-width: #{$screen-max-m})";
+$phone: "only screen and (min-width:#{$screen-min-s}) and (max-width: #{$screen-max-s})";
