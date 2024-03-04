@@ -3,20 +3,26 @@ import { compareHash } from "../utils/crypto.utils.js";
 import { generateToken } from "../middlewares/jwt.mdlwr.js";
 
 export const Register = async (req, res) => {
-  const { email, password, username } = req.body;
+  // Récupère l'entrée de l'utilisateur via les innputs client ou ThunderCLient et/ou autres...
+  const { email, username } = req.body;
 
   try {
-    const response = await register({ email, password, username });
+    // insert le compte utilisateur via les données enregistré dans le client (formulaire) ou Thunderclient et/ou autres...
+    const response = await register({
+      email,
+      username,
+      hashedPassword: req.hashedPassword,
+    });
 
     if (response.error) {
       return res.status(404).json({ message: "Failed to register user ❌" });
     }
-
-    const userId = response.result.insertId;
+    // Crée une variable pour récuperer les toutes données de l'utilisateur pour pouvoir l'afficher dans le statut JSON depuis ThunderCLient et/ou autres...
+    const newUser = { user_id: response.result.insertId, email, username };
 
     return res.status(201).json({
       message: "User created ⭕",
-      user: userId,
+      user: newUser,
     });
   } catch (error) {
     return res.status(500).json({ message: "Internal Server Error 🚫" });
