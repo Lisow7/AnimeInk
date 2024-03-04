@@ -125,3 +125,22 @@ function sommeChiffres(nombre) {
 }
 
 /////////////////////////////////////////////////////////////////////////////
+
+// FUnction n°11
+
+function estPangramme(phrase) {
+  let alphabet = "abcdefghijklmnopqrstuvwxyz";
+  phrase = phrase.toLowerCase();
+
+  for (let lettre of alphabet) {
+    if (phrase.indexOf(lettre) === -1) {
+      return false;
+    }
+  }
+  return true;
+}
+
+console.log(estPangramme("Le vif zéphyr jubile sur les waqfs nazi")); // Renvoie true
+console.log(estPangramme("Bonjour")); // Renvoie false
+
+//////////////////////////////////////////////////////////////////////
