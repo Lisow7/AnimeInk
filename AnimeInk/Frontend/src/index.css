@@ -1,0 +1,110 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+html {
+  /* Améliorations de la visibilé du texte sur Mozilla et Chrome */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Dissimulation de la scrollbar */
+  scrollbar-width: none;
+  scrollbar-color: transparent;
+  /* Dissimulation de la scrollbar sur Explorer & Mozilla */
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+acronym {
+  text-decoration: none;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+
+h3 {
+  font-weight: 600;
+}
+
+section {
+  height: 80vh;
+}
+
+article {
+  align-items: center;
+}
+
+form {
+  width: fit-content;
+}
+
+select option {
+  width: fit-content;
+}
+
+label {
+  color: #000;
+}
+
+input {
+  background-color: white;
+}
+
+textarea {
+  width: fit-content;
+}
+
+@media only screen and (min-width: 1920px) {
+  /* ----------- Desktop 2K ------------- */
+}
+@media only screen and (min-width: 1366px) and (max-width: 1919px) {
+  /* -------- Desktop FULL HD ------------- */
+}
+@media only screen and (min-width: 1024px) and (max-width: 1365px) {
+  /* ------------- Desktop HD -------------- */
+}
+@media only screen and (min-width:768px) and (max-width: 1023px) {
+  /* ------------- Tablet ------------- */
+}
+@media only screen and (min-width:1px) and (max-width: 767px) {
+  /* ---------- Phone ------------ */
+}
+.start {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 14rem;
+  font-size: 5.5rem;
+  margin: 7rem auto;
+}
+
+/*HEADER*/
+/*-----------------------*/
+/* FOOTER */
+
+/*# sourceMappingURL=index.css.map */

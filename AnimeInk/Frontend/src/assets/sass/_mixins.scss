@@ -1,0 +1,45 @@
+// Mixin pour les propriétés communes des boutons
+@mixin button-common {
+  font-weight: 600;
+  transition: all 300ms ease;
+  padding: 1rem;
+  width: 8rem;
+  border-radius: 2rem;
+}
+
+// Mixin pour les styles de survol
+@mixin hover-styles {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+// Mixin pour les styles de survol des boutons first et second
+@mixin button-hover-styles {
+  border: #353535 0.1rem solid;
+  &:hover {
+    // A changer !!!
+    color: #fff; // A changer !!!
+  }
+}
+
+// Mixin pour les styles spécifiques au flex row
+@mixin flex-row($direction: row, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// Mixin pour les styles spécifiques au flex column
+@mixin flex-column(
+  $display: flex,
+  $direction: column,
+  $justify: center,
+  $align: center
+) {
+  display: $display;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
