@@ -144,3 +144,23 @@ console.log(estPangramme("Le vif zéphyr jubile sur les waqfs nazi")); // Renvoi
 console.log(estPangramme("Bonjour")); // Renvoie false
 
 //////////////////////////////////////////////////////////////////////
+
+// Function N°12
+
+function trierParPropriete(tableau, propriete) {
+  return tableau.sort((a, b) =>
+    a[propriete] > b[propriete] ? 1 : b[propriete] > a[propriete] ? -1 : 0
+  );
+}
+
+let personnes = [
+  { nom: "Alice", age: 30 },
+  { nom: "Bob", age: 25 },
+  { nom: "Charlie", age: 35 },
+];
+
+let personnesTrieesParAge = trierParPropriete(personnes, "age");
+console.log(personnesTrieesParAge);
+// Affiche [{ nom: 'Bob', age: 25 }, { nom: 'Alice', age: 30 }, { nom: 'Charlie', age: 35 }]
+
+//////////////////////////////////////////////////////////////////////////////////////////////
