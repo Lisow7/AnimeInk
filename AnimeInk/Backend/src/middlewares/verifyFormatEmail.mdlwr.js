@@ -12,6 +12,6 @@ export const verifyFormatEmail = (req, res, next) => {
     // Passage à l'étape suivante : vérification de l'existence de l'email
     next();
   } catch (error) {
-    return res.status(500).json({ message: "Internal Server Error" });
+    return res.status(500).json({ message: "Internal Server Error 🚫" });
   }
 };

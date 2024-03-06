@@ -8,6 +8,6 @@ export const hashPassword = async (req, res, next) => {
     req.hashedPassword = hashedPassword;
     next();
   } catch (error) {
-    return res.status(500).json({ message: "Error hashing password 🚫" });
+    return res.status(500).json({ message: "Internal Server Error 🚫" });
   }
 };
