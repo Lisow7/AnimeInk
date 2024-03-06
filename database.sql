@@ -27,6 +27,7 @@ CREATE TABLE `users` (
   `password` VARCHAR(250) NOT NULL,
   `avatar` VARCHAR(250) NULL,
   `role_id` INT(11) DEFAULT 2,
+  `auth_token` VARCHAR(255) NULL,
   FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
