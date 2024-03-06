@@ -34,7 +34,7 @@ export const Login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Objet "user" du resultat de la requête nommé "result" qui permet d'accèder au compte utilisateur via l'email.
+    // Objet "user" du resultat de la requête nommé "result" du model login qui permet d'accèder au compte utilisateur via l'email.
     const { result: user } = await login(email);
 
     if (!user) {
@@ -44,7 +44,7 @@ export const Login = async (req, res) => {
       });
     }
 
-    // Objet "user" du resultat de la requête nommé "result" qui permet d'acceder au password via l'email et on le compare avec le utils de "bcrypt.compare(password, hashPassword" .
+    // Objet "user" du resultat de la requête nommé "result" qui permet d'acceder au password via l'email et on le compare avec le utils de "bcrypt.compare(entryPassword, dbPassword) et il atttent un booléan "success" true ou false.
     const isPasswordValid = await compareHash(password, user.password);
 
     if (!isPasswordValid) {
@@ -66,7 +66,7 @@ export const Login = async (req, res) => {
 
     return res
       .status(200)
-      .json({ success: true, message: "Login successful ✅", token });
+      .json({ success: true, message: "Login successful ✅", email, token });
   } catch (error) {
     return res.status(500).json({
       success: false,
