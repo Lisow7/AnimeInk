@@ -8,5 +8,8 @@ export const generateToken = (userId) => {
     user_id: userId,
   };
 
-  return jwt.sign(payload, secretKey, jwtOptions);
+  const token = jwt.sign(payload, secretKey, jwtOptions);
+  console.log("Generated token:", token); // Ajout du log
+
+  return token;
 };

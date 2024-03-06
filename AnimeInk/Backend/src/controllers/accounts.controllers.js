@@ -57,6 +57,7 @@ export const Login = async (req, res) => {
     // Création du payload, pas besoin de crée la secretKey et jwtOptions, ils sont directement crée depuis le jwt.mdlwr.js
     // Génération du token avec l'ID de l'utilisateur
     const token = generateToken(user.user_id);
+    console.log("Generated token in Login:", token); // Ajout du log
 
     // Enregistrement du token dans la base de données
     await saveToken(user.user_id, token);
