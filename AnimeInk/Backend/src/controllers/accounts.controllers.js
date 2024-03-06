@@ -17,7 +17,7 @@ export const Register = async (req, res) => {
     if (response.error) {
       return res.status(404).json({ message: "Failed to register user ❌" });
     }
-    // Crée une variable pour récuperer les toutes données de l'utilisateur pour pouvoir l'afficher dans le statut JSON depuis ThunderCLient et/ou autres...
+    // Crée une variable pour récuperer toutes less données de l'utilisateur via l'id pour pouvoir l'afficher en JSON pour le serveur.
     const newUser = { user_id: response.result.insertId, email, username };
 
     return res.status(201).json({
@@ -34,7 +34,7 @@ export const Login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Récupère le compte utilisateur via l'email.
+    // Objet "user" du resultat de la requête nommé "result" qui permet d'accèder au compte utilisateur via l'email.
     const { result: user } = await login(email);
 
     if (!user) {
@@ -44,7 +44,7 @@ export const Login = async (req, res) => {
       });
     }
 
-    // Compare les deux password et vérifie qu'ils sont compatibles.
+    // Objet "user" du resultat de la requête nommé "result" qui permet d'acceder au password via l'email et on le compare avec le utils de "bcrypt.compare(password, hashPassword" .
     const isPasswordValid = await compareHash(password, user.password);
 
     if (!isPasswordValid) {
@@ -56,10 +56,6 @@ export const Login = async (req, res) => {
     // Création du payload, pas besoin de crée la secretKey et jwtOptions, ils sont directement crée depuis le jwt.mdlwr.js
     const payload = {
       user_id: user.user_id,
-      email: user.email,
-      username: user.username,
-      avatar: user.avatar,
-      role_id: user.role_id,
     };
 
     // Génération du token avec le payload.

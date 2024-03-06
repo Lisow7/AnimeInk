@@ -25,15 +25,15 @@ export const register = async (user) => {
   }
 };
 
-export const login = async (email) => {
-  const sql = `SELECT * FROM users WHERE email = ?`;
+export const login = async (email, password) => {
+  const sql = `SELECT email, password FROM users WHERE email = ?`;
 
   let error = null;
   let result = null;
 
   try {
     // Récupère les données de l'utilisateur de la bdd via l'email remplit dans l'input client(formulaire) ou ThunderCLient et/ou autres...
-    result = await query(sql, [email]);
+    result = await query(sql, [email, password]);
     result = result[0];
   } catch (err) {
     error = err.message;
