@@ -1,6 +1,7 @@
 import { register, login } from "../databases/accounts.db.js";
 import { compareHash } from "../utils/crypto.utils.js";
 import { generateToken } from "../middlewares/jwt.mdlwr.js";
+import saveToken from "../utils/tokens.utils.js";
 
 export const Register = async (req, res) => {
   // Récupère l'entrée de l'utilisateur via les innputs client ou ThunderCLient et/ou autres...
@@ -54,12 +55,11 @@ export const Login = async (req, res) => {
     }
 
     // Création du payload, pas besoin de crée la secretKey et jwtOptions, ils sont directement crée depuis le jwt.mdlwr.js
-    const payload = {
-      user_id: user.user_id,
-    };
+    // Génération du token avec l'ID de l'utilisateur
+    const token = generateToken(user.user_id);
 
-    // Génération du token avec le payload.
-    const token = generateToken(payload);
+    // Enregistrement du token dans la base de données
+    await saveToken(user.user_id, token);
 
     // Supprime le mot de passe du corps de la requête avant de le renvoyer au client pour une meilleur sécurité.
     delete req.body.password;

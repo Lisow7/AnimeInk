@@ -26,7 +26,7 @@ export const register = async (user) => {
 };
 
 export const login = async (email, password) => {
-  const sql = `SELECT email, password FROM users WHERE email = ?`;
+  const sql = `SELECT user_id, email, password FROM users WHERE email = ?`;
 
   let error = null;
   let result = null;
