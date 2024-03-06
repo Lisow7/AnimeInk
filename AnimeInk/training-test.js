@@ -164,3 +164,41 @@ console.log(personnesTrieesParAge);
 // Affiche [{ nom: 'Bob', age: 25 }, { nom: 'Alice', age: 30 }, { nom: 'Charlie', age: 35 }]
 
 //////////////////////////////////////////////////////////////////////////////////////////////
+
+// Function N°13
+
+function fusionnerTableauxTriés(tableau1, tableau2) {
+  let tableauFusionne = [];
+  let i = 0;
+  let j = 0;
+
+  while (i < tableau1.length && j < tableau2.length) {
+    if (tableau1[i] < tableau2[j]) {
+      tableauFusionne.push(tableau1[i]);
+      i++;
+    } else {
+      tableauFusionne.push(tableau2[j]);
+      j++;
+    }
+  }
+
+  // Ajouter les éléments restants du premier tableau
+  while (i < tableau1.length) {
+    tableauFusionne.push(tableau1[i]);
+    i++;
+  }
+
+  // Ajouter les éléments restants du deuxième tableau
+  while (j < tableau2.length) {
+    tableauFusionne.push(tableau2[j]);
+    j++;
+  }
+
+  return tableauFusionne;
+}
+
+let tableau1 = [1, 3, 5, 7];
+let tableau2 = [2, 4, 6, 8];
+console.log(fusionnerTableauxTriés(tableau1, tableau2)); // Renvoie [1, 2, 3, 4, 5, 6, 7, 8]
+
+//////////////////////////////////////////////////////////////////////////////////////////////
