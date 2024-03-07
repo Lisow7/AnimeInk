@@ -11,11 +11,11 @@ const saveToken = async (userId, authToken) => {
 
   try {
     result = await query(sql, [authToken, userId]);
-    console.log("Token saved successfully!");
+    console.log("Token saved successfully ! 🛡️");
   } catch (err) {
     error = err.message;
     console.error("Failed to save token:", error);
-    throw new Error(`Failed to save token: ${error}`);
+    throw new Error(`❌Failed to save token: ${error}`);
   } finally {
     return { error, result };
   }

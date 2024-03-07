@@ -51,7 +51,7 @@ export const Register = async (req, res) => {
 
 export const Login = async (req, res) => {
   // Récupère l'entrée de l'utilisateur via les innputs client ou ThunderCLient et/ou autres...
-  const { email, password } = req.body;
+  const { email, password, username } = req.body;
 
   try {
     // Objet "user" du resultat de la requête nommé "result" du model login qui permet d'accèder au compte utilisateur via l'email.
@@ -84,9 +84,13 @@ export const Login = async (req, res) => {
     // Supprime le mot de passe du corps de la requête avant de le renvoyer au client pour une meilleur sécurité.
     delete req.body.password;
 
-    return res
-      .status(200)
-      .json({ success: true, message: "Login successful ✅", email, token });
+    return res.status(200).json({
+      success: true,
+      message: "Login successful ✅",
+      username,
+      email,
+      token,
+    });
   } catch (error) {
     return res.status(500).json({
       success: false,
