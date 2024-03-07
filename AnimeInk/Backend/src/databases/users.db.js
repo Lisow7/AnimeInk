@@ -1,78 +1,23 @@
-// import query from "./init.db.js";
+import query from "../databases/init.db.js";
 
-// const create = async (email, password, name) => {
-//   const sql =`
-//     INSERT INTO USERS (email, password, name)
-//     VALUES (?, ?, ?)`;
+export const updateProfile = async (userData, user_id) => {
+  const { username, email, avatar } = userData;
 
-//   let error = null;
-//   let result = null;
+  const sql = `UPDATE users SET username = ?, email = ?, avatar = ? WHERE user_id = ?`;
 
-//   try {
-//     result = await query(sql, [email, password, name]);
-//   } catch (e) {
-//     error = e.message;
-//   } finally {
-//     return { error, result };
-//   }
-// };
+  let error = null;
+  let result = null;
 
-// const signIn = async (email) => {
-//   const sql =`
-//     SELECT user_id, email, password
-//     FROM users
-//     WHERE email = ?`;
+  try {
+    result = await query(sql, [username, email, avatar, user_id]);
 
-//   let error = null;
-//   let result = null;
-
-//   try {
-//     result = await query(sql, [email]);
-//   } catch (e) {
-//     error = e.message;
-//   } finally {
-//     return { error, result };
-//   }
-// };
-
-// export const UserDB = { create, signIn };
-
-
-// const create = async (email, password, pseudo = "Anonyme") => {
-//   const sql = INSERT INTO users (email, password, pseudo)
-//     VALUES (?, ?, ?);
-
-//   let error = null;
-//   let result = null;
-
-//   try {
-//     // le resultat sera un objet avec diverses infos
-//     // car ici nous avons un INSERT
-//     result = await query(sql, [email, password, pseudo]);
-//   } catch (e) {
-//     error = e.message;
-//   } finally {
-//     return { error, result };
-//   }
-// };
-
-// const readByEmail = async (email) => {
-//   const sql = SELECT user_id, email, password
-//   FROM users
-//   WHERE email = ?;
-
-//   let error = null;
-//   let result = null;
-
-//   try {
-//     // le resultat sera un tableau avec les données trouvées
-//     // car ici nous avons un SELECT
-//     result = await query(sql, [email]);
-//   } catch (e) {
-//     error = e.message;
-//   } finally {
-//     return { error, result };
-//   }
-// };
-
-// export const UserDB = { create, readByEmail };
+    if (result.affectedRows === 1) {
+      return userData;
+    }
+    return null;
+  } catch (err) {
+    error = err.message;
+  } finally {
+    return { error, result };
+  }
+};
