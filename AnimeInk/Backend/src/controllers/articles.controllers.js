@@ -10,7 +10,9 @@ export const GetAllArticles = async (req, res) => {
     const articles = await getAllArticles();
     res.status(200).json({ data: articles, message: "⭕" });
   } catch (error) {
-    res.status(500).json({ message: "Error retrieving articles 🚫" });
+    res
+      .status(500)
+      .json({ success: false, message: "Internal Server Error 🚫", error });
   }
 };
 
@@ -34,6 +36,8 @@ export const CreateArticle = async (req, res) => {
       });
     }
   } catch (error) {
-    res.status(500).json({ message: "Error creating article 🚫" });
+    res
+      .status(500)
+      .json({ success: false, message: "Internal Server Error 🚫", error });
   }
 };
