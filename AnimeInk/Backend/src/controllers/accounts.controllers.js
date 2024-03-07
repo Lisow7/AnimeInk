@@ -101,7 +101,7 @@ export const UpdatePassword = async (req, res) => {
     res.status(202).json({
       success: true,
       message: "Password is UPDATED Successfully ✅",
-      password: response.hashedPassword,
+      password: req.hashedPassword,
     });
 
     return [response.hashedPassword];
