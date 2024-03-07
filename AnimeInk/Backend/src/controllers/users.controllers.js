@@ -9,13 +9,13 @@ export const UpdateProfile = async (req, res) => {
     if (!response) {
       res.status(404).json({
         success: false,
-        message: "Profile NOT UPDATED",
+        message: "Profile is NOT UPDATED ❌",
       });
-      return console.error(response, "Error Model ! ❌");
+      return console.error(response, "Error Model ! 🚧");
     }
     res.status(202).json({
       success: true,
-      message: "Profile UPDATED",
+      message: "Profile is UPDATED on Success ✅",
       username: username,
       email: email,
       avatar: avatar,
@@ -33,10 +33,15 @@ export const DeleteAvatar = async (req, res) => {
     const user_id = req.params.id;
     const response = await deleteAvatar(user_id);
     if (!response) {
-      res.status(404).json({ success: false, message: "User NOT DELETE" });
+      res
+        .status(404)
+        .json({ success: false, message: "Avatar Profile is NOT DELETE ❌" });
       return false;
     }
-    res.status(202).json({ success: true, message: "User DELETE on Success" });
+    res.status(202).json({
+      success: true,
+      message: "Avatar Profile is DELETE on Success ✅",
+    });
     return true;
   } catch (error) {
     res
