@@ -15,18 +15,23 @@ export const Register = async (req, res) => {
       hashedPassword: req.hashedPassword,
     });
 
-    if (response.error) {
-      return res.status(404).json({ message: "Failed to register user ❌" });
+    if (!response) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Failed to register user ❌" });
     }
     // Crée une variable pour récuperer toutes less données de l'utilisateur via l'id pour pouvoir l'afficher en JSON pour le serveur.
     const newUser = { user_id: response.result.insertId, email, username };
 
     return res.status(201).json({
+      success: true,
       message: "User created ⭕",
       user: newUser,
     });
   } catch (error) {
-    return res.status(500).json({ message: "Internal Server Error 🚫" });
+    return res
+      .status(500)
+      .json({ success: false, message: "Internal Server Error 🚫", error });
   }
 };
 
@@ -72,7 +77,7 @@ export const Login = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Internal Server Error 🚫",
-      error: error.message,
+      error,
     });
   }
 };
