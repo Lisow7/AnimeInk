@@ -1,78 +1,51 @@
-// import query from "./init.db.js";
+import query from "../databases/init.db.js";
 
-// const create = async (email, password, name) => {
-//   const sql =`
-//     INSERT INTO USERS (email, password, name)
-//     VALUES (?, ?, ?)`;
+export const updateProfile = async (user, user_id) => {
+  // Extraction des clés et des valeurs de l'objet user
+  const keys = Object.keys(user);
+  const values = Object.values(user);
 
-//   let error = null;
-//   let result = null;
+  // Construction de la requête SQL pour mettre à jour les valeurs du profil avec la variable keys on utilise le .map() pour générer un new array sur lequel on va mapper tous les champs et valeur de la table users.
+  let sql = "UPDATE users SET ";
+  const updateClauses = keys.map((key) => `${key} = ?`);
+  sql += updateClauses.join(", ");
+  sql += " WHERE user_id = ?"; // Adaptation de l'ID de l'utilisateur à user_id
 
-//   try {
-//     result = await query(sql, [email, password, name]);
-//   } catch (e) {
-//     error = e.message;
-//   } finally {
-//     return { error, result };
-//   }
-// };
+  // Ajout de l'ID de l'utilisateur à la liste des valeurs
+  values.push(user_id);
 
-// const signIn = async (email) => {
-//   const sql =`
-//     SELECT user_id, email, password
-//     FROM users
-//     WHERE email = ?`;
+  let error = null;
+  let result = null;
 
-//   let error = null;
-//   let result = null;
+  try {
+    result = await query(sql, values);
 
-//   try {
-//     result = await query(sql, [email]);
-//   } catch (e) {
-//     error = e.message;
-//   } finally {
-//     return { error, result };
-//   }
-// };
+    if (result.affectedRows === 1) {
+      return user_id;
+    }
+    return null;
+  } catch (err) {
+    error = err.message;
+  } finally {
+    return { error, result };
+  }
+};
 
-// export const UserDB = { create, signIn };
+export const deleteAvatar = async (avatar, user_id) => {
+  const sql = `DELETE avatar FROM users WHERE user_id = ?`;
 
+  let error = null;
+  let result = null;
 
-// const create = async (email, password, pseudo = "Anonyme") => {
-//   const sql = INSERT INTO users (email, password, pseudo)
-//     VALUES (?, ?, ?);
-
-//   let error = null;
-//   let result = null;
-
-//   try {
-//     // le resultat sera un objet avec diverses infos
-//     // car ici nous avons un INSERT
-//     result = await query(sql, [email, password, pseudo]);
-//   } catch (e) {
-//     error = e.message;
-//   } finally {
-//     return { error, result };
-//   }
-// };
-
-// const readByEmail = async (email) => {
-//   const sql = SELECT user_id, email, password
-//   FROM users
-//   WHERE email = ?;
-
-//   let error = null;
-//   let result = null;
-
-//   try {
-//     // le resultat sera un tableau avec les données trouvées
-//     // car ici nous avons un SELECT
-//     result = await query(sql, [email]);
-//   } catch (e) {
-//     error = e.message;
-//   } finally {
-//     return { error, result };
-//   }
-// };
-
-// export const UserDB = { create, readByEmail };
+  try {
+    [result] = await query(sql, [avatar, user_id]);
+    if (result.affectedRows === 1) {
+      return true;
+    }
+    return false;
+  } catch (err) {
+    error = err.message;
+  } finally {
+    return { error, result };
+  }
+};

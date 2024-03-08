@@ -30,7 +30,9 @@ export const GetOneComment = async (req, res) => {
       res.status(404).json({ message: "Comment not found ❌" });
     }
   } catch (error) {
-    res.status(500).json({ message: "Error GET ONE comment 🚫" });
+    res
+      .status(500)
+      .json({ success: false, message: "Internal Server Error 🚫", error });
   }
 };
 
@@ -49,7 +51,9 @@ export const CreateComment = async (req, res) => {
       });
     }
   } catch (error) {
-    res.status(500).json({ message: "Error CREATING comment 🚫" });
+    res
+      .status(500)
+      .json({ success: false, message: "Internal Server Error 🚫", error });
   }
 };
 
@@ -67,7 +71,9 @@ export const UpdateComment = async (req, res) => {
       res.status(404).json({ message: "Comment not UPDATED ❌" });
     }
   } catch (error) {
-    res.status(500).json({ message: "Error UPDATING comment 🚫" });
+    res
+      .status(500)
+      .json({ success: false, message: "Internal Server Error 🚫", error });
   }
 };
 
@@ -82,6 +88,8 @@ export const DeleteComment = async (req, res) => {
       res.status(404).json({ message: "Comment not DELETED ❌" });
     }
   } catch (error) {
-    res.status(500).json({ message: "Error DELETING comment 🚫" });
+    res
+      .status(500)
+      .json({ success: false, message: "Internal Server Error 🚫", error });
   }
 };
