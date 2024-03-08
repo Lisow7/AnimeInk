@@ -9,6 +9,7 @@ import { verifyEmailIsExist } from "../middlewares/verifyEmailIsExist.mdlwr.js";
 import { verifyPasswordFormat } from "../middlewares/verifyPasswordFormat.mdlwr.js"; // Ajoutez cette ligne
 import { hashPassword } from "../middlewares/hashPassword.mdlwr.js";
 import { verifyToken } from "../middlewares/jwt.mdlwr.js";
+import { checkTokenAuth } from "../utils/tokens.utils.js";
 
 const initAccountRoutes = (app) => {
   const router = express.Router();
@@ -35,6 +36,8 @@ const initAccountRoutes = (app) => {
 
   router.patch(
     "/update-password/:id",
+    verifyToken,
+    checkTokenAuth,
     verifyPasswordFormat,
     hashPassword,
     UpdatePassword

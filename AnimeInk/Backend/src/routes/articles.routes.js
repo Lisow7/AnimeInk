@@ -3,6 +3,8 @@ import {
   GetAllArticles,
   CreateArticle,
 } from "../controllers/articles.controllers.js";
+// import { verifyToken } from "../middlewares/jwt.mdlwr.js";
+// import { checkTokenAuth } from "../utils/tokens.utils.js";
 
 const initArticlesRoutes = (app) => {
   const router = express.Router();
