@@ -1,7 +1,7 @@
 import { register, login, updatePassword } from "../databases/accounts.db.js";
 import { compareHash } from "../utils/crypto.utils.js";
 import { generateToken } from "../middlewares/jwt.mdlwr.js";
-import saveToken from "../utils/tokens.utils.js";
+import { saveToken } from "../utils/tokens.utils.js";
 
 export const Register = async (req, res) => {
   // Récupère l'entrée de l'utilisateur via les innputs client ou ThunderCLient et/ou autres...
@@ -82,7 +82,7 @@ export const Login = async (req, res) => {
     // Supprime le mot de passe du corps de la requête avant de le renvoyer au client pour une meilleur sécurité.
     delete req.body.password;
 
-    return res.status(200).json({
+    return res.status(202).json({
       success: true,
       message: "Login successful ✅",
       username,
@@ -108,26 +108,25 @@ export const UpdatePassword = async (req, res) => {
       },
       id
     );
-
+    console.error(response, "Error -> Model = updatePass ! 🚧");
     console.info("Password hashed", req.hashedPassword);
 
     if (!response) {
-      res.status(404).json({
+      return res.status(404).json({
         success: false,
-        message: "Password is NOT UPDATED ❌",
+        message: "Not UPDATING ❌",
       });
-      return console.error(response, "Error Model ! 🚧");
     }
 
     res.status(202).json({
       success: true,
-      message: "Password is UPDATED Successfully ✅",
+      message: "UPDATED Successfully ✅",
       password: req.hashedPassword,
     });
 
     return [response.hashedPassword];
   } catch (error) {
-    res
+    return res
       .status(500)
       .json({ success: false, message: "Internal Server Error 🚫", error });
   }
