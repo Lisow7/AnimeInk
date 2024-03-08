@@ -108,7 +108,6 @@ export const UpdatePassword = async (req, res) => {
       },
       id
     );
-    console.error(response, "Error -> Model = updatePass ! 🚧");
     console.info("Password hashed", req.hashedPassword);
 
     if (!response) {
