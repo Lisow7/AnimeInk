@@ -1,5 +1,3 @@
-// UTILS = token.utils.js
-
 import query from "../databases/init.db.js";
 
 const saveToken = async (userId, authToken) => {

@@ -22,10 +22,9 @@ export const Register = async (req, res) => {
 
     const { result: user } = await login(email);
 
-    // Création du payload, pas besoin de crée la secretKey et jwtOptions, ils sont directement crée depuis le jwt.mdlwr.js
     // Génération du token avec l'ID de l'utilisateur
     const token = generateToken(user.user_id);
-    console.log("Generated token in Register:", token); // Ajout du log
+    console.log("Generated token in Register:", token);
 
     // Enregistrement du token dans la base de données
     await saveToken(user.user_id, token);
@@ -73,7 +72,6 @@ export const Login = async (req, res) => {
         .json({ success: false, message: "Invalid email or password 🚧" });
     }
 
-    // Création du payload, pas besoin de crée la secretKey et jwtOptions, ils sont directement crée depuis le jwt.mdlwr.js
     // Génération du token avec l'ID de l'utilisateur
     const token = generateToken(user.user_id);
     console.log("Generated token in Login:", token); // Ajout du log
