@@ -42,3 +42,28 @@ export const login = async (email, password) => {
     return { error, result };
   }
 };
+
+export const updatePassword = async (user, user_id) => {
+  const { hashedPassword } = user;
+
+  const sql = `
+    UPDATE users
+    SET password = ?
+    WHERE user_id = ?`;
+
+  let error = null;
+  let result = null;
+
+  try {
+    result = await query(sql, [hashedPassword, user_id]);
+
+    if (result.affectedRows === 1) {
+      return user_id;
+    }
+    return null;
+  } catch (err) {
+    error = err.message;
+  } finally {
+    return { error, result };
+  }
+};

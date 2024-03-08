@@ -1,4 +1,4 @@
-import { register, login } from "../databases/accounts.db.js";
+import { register, login, updatePassword } from "../databases/accounts.db.js";
 import { compareHash } from "../utils/crypto.utils.js";
 import { generateToken } from "../middlewares/jwt.mdlwr.js";
 import saveToken from "../utils/tokens.utils.js";
@@ -79,5 +79,40 @@ export const Login = async (req, res) => {
       message: "Internal Server Error 🚫",
       error,
     });
+  }
+};
+
+export const UpdatePassword = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const response = await updatePassword(
+      {
+        hashedPassword: req.hashedPassword,
+      },
+      id
+    );
+
+    console.info("Password hashed", req.hashedPassword);
+
+    if (!response) {
+      res.status(404).json({
+        success: false,
+        message: "Password is NOT UPDATED ❌",
+      });
+      return console.error(response, "Error Model ! 🚧");
+    }
+
+    res.status(202).json({
+      success: true,
+      message: "Password is UPDATED Successfully ✅",
+      password: req.hashedPassword,
+    });
+
+    return [response.hashedPassword];
+  } catch (error) {
+    res
+      .status(500)
+      .json({ success: false, message: "Internal Server Error 🚫", error });
   }
 };

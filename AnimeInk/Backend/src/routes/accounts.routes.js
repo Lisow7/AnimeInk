@@ -1,5 +1,9 @@
 import express from "express";
-import { Register, Login } from "../controllers/accounts.controllers.js";
+import {
+  Register,
+  Login,
+  UpdatePassword,
+} from "../controllers/accounts.controllers.js";
 import { verifyFormatEmail } from "../middlewares/verifyFormatEmail.mdlwr.js";
 import { verifyEmailIsExist } from "../middlewares/verifyEmailIsExist.mdlwr.js";
 import { verifyPasswordFormat } from "../middlewares/verifyPasswordFormat.mdlwr.js"; // Ajoutez cette ligne
@@ -18,6 +22,13 @@ const initAccountRoutes = (app) => {
   );
 
   router.post("/sign-in", verifyFormatEmail, verifyPasswordFormat, Login);
+
+  router.patch(
+    "/update-password/:id",
+    verifyPasswordFormat,
+    hashPassword,
+    UpdatePassword
+  );
 
   app.use("/account", router);
 };
