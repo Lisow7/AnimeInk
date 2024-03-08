@@ -32,7 +32,7 @@ export const updateProfile = async (user, user_id) => {
 };
 
 export const deleteAvatar = async (avatar, user_id) => {
-  const sql = `DELETE avatar FROM users WHERE user_id = ?`;
+  const sql = `UPDATE users SET avatar = NULL WHERE user_id = ?`;
 
   let error = null;
   let result = null;
