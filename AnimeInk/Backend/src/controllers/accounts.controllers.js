@@ -21,7 +21,26 @@ export const Register = async (req, res) => {
         .json({ success: false, message: "Failed to register user ❌" });
     }
     // Crée une variable pour récuperer toutes less données de l'utilisateur via l'id pour pouvoir l'afficher en JSON pour le serveur.
-    const newUser = { user_id: response.result.insertId, email, username };
+
+    const { result: user } = await login(email);
+
+    // Création du payload, pas besoin de crée la secretKey et jwtOptions, ils sont directement crée depuis le jwt.mdlwr.js
+    // Génération du token avec l'ID de l'utilisateur
+    const token = generateToken(user.user_id);
+    console.log("Generated token in Register:", token); // Ajout du log
+
+    // Enregistrement du token dans la base de données
+    await saveToken(user.user_id, token);
+
+    const newUser = {
+      user_id: response.result.insertId,
+      email,
+      username,
+      token,
+    };
+
+    // Supprime le mot de passe du corps de la requête avant de le renvoyer au client pour une meilleur sécurité.
+    delete req.body.password;
 
     return res.status(201).json({
       success: true,
