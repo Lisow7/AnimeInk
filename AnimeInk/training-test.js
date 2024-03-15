@@ -202,3 +202,40 @@ let tableau2 = [2, 4, 6, 8];
 console.log(fusionnerTableauxTriés(tableau1, tableau2)); // Renvoie [1, 2, 3, 4, 5, 6, 7, 8]
 
 //////////////////////////////////////////////////////////////////////////////////////////////
+
+// Function N°14
+
+import React from "react";
+
+function ArticleAuHasard({ articles }) {
+  const articleAuHasard = articles[Math.floor(Math.random() * articles.length)];
+
+  return (
+    <div>
+      <h2>{articleAuHasard.title}</h2>
+      <p>{articleAuHasard.content}</p>
+    </div>
+  );
+}
+
+// export default ArticleAuHasard;
+
+import React from "react";
+import ArticleAuHasard from "./ArticleAuHasard";
+
+const articles = [
+  { title: "Premier article", content: "Contenu du premier article..." },
+  { title: "Deuxième article", content: "Contenu du deuxième article..." },
+  { title: "Troisième article", content: "Contenu du troisième article..." },
+];
+
+function App() {
+  return (
+    <div className="App">
+      <h1>Mon Blog</h1>
+      <ArticleAuHasard articles={articles} />
+    </div>
+  );
+}
+
+// export default App;
