@@ -1,7 +1,7 @@
 import { register, login, updatePassword } from "../databases/accounts.db.js";
 import { compareHash } from "../utils/crypto.utils.js";
 import { generateToken } from "../middlewares/jwt.mdlwr.js";
-import saveToken from "../utils/tokens.utils.js";
+import { saveToken } from "../utils/tokens.utils.js";
 
 export const Register = async (req, res) => {
   // Récupère l'entrée de l'utilisateur via les innputs client ou ThunderCLient et/ou autres...
@@ -24,10 +24,9 @@ export const Register = async (req, res) => {
 
     const { result: user } = await login(email);
 
-    // Création du payload, pas besoin de crée la secretKey et jwtOptions, ils sont directement crée depuis le jwt.mdlwr.js
     // Génération du token avec l'ID de l'utilisateur
     const token = generateToken(user.user_id);
-    console.log("Generated token in Register:", token); // Ajout du log
+    console.log("Generated token in Register:", token);
 
     // Enregistrement du token dans la base de données
     await saveToken(user.user_id, token);
@@ -56,7 +55,7 @@ export const Register = async (req, res) => {
 
 export const Login = async (req, res) => {
   // Récupère l'entrée de l'utilisateur via les innputs client ou ThunderCLient et/ou autres...
-  const { email, password } = req.body;
+  const { email, password, username } = req.body;
 
   try {
     // Objet "user" du resultat de la requête nommé "result" du model login qui permet d'accèder au compte utilisateur via l'email.
@@ -78,7 +77,6 @@ export const Login = async (req, res) => {
         .json({ success: false, message: "Invalid email or password 🚧" });
     }
 
-    // Création du payload, pas besoin de crée la secretKey et jwtOptions, ils sont directement crée depuis le jwt.mdlwr.js
     // Génération du token avec l'ID de l'utilisateur
     const token = generateToken(user.user_id);
     console.log("Generated token in Login:", token); // Ajout du log
@@ -89,9 +87,13 @@ export const Login = async (req, res) => {
     // Supprime le mot de passe du corps de la requête avant de le renvoyer au client pour une meilleur sécurité.
     delete req.body.password;
 
-    return res
-      .status(200)
-      .json({ success: true, message: "Login successful ✅", email, token });
+    return res.status(202).json({
+      success: true,
+      message: "Login successful ✅",
+      username,
+      email,
+      token,
+    });
   } catch (error) {
     return res.status(500).json({
       success: false,
@@ -111,26 +113,24 @@ export const UpdatePassword = async (req, res) => {
       },
       id
     );
-
     console.info("Password hashed", req.hashedPassword);
 
     if (!response) {
-      res.status(404).json({
+      return res.status(404).json({
         success: false,
-        message: "Password is NOT UPDATED ❌",
+        message: "Not UPDATING ❌",
       });
-      return console.error(response, "Error Model ! 🚧");
     }
 
     res.status(202).json({
       success: true,
-      message: "Password is UPDATED Successfully ✅",
+      message: "UPDATED Successfully ✅",
       password: req.hashedPassword,
     });
 
     return [response.hashedPassword];
   } catch (error) {
-    res
+    return res
       .status(500)
       .json({ success: false, message: "Internal Server Error 🚫", error });
   }
