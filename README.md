@@ -1,10 +1,38 @@
-MVC
+### MVC
 
-### Account
+## Account :
 
-Post : account/register (Register
+# Post : account/register (Register, format [email, password], Jwt.sign, controller)
 
+# Delete : account/deleteUser (delete, format [email, password], verifyAuth controller)
 
+# Update : account/update/password (update, password, verifyAuth, controller)
+
+## User :
+
+# Delete : user/delete/avatar (deleteAvatarById, verifyAuth, controller)
+
+# Update : users/update/profile (updateProfileById, formatEmail, usernameExist, verifyAuth, controller)
+
+## Article :
+
+# Get : articles/article/value (findArticleByValue, verifyAuth, controller) pour la jointure ?
+
+# Post : articles/add/ (Add, verifieArticleValueExist,verifyAuth , controller)
+
+## Comments :
+
+# Post : comments/add (addComment, verifyAuth, controller)
+
+# Delete : comments/delete/id (deleteCommentById, verifyAuth, controller)
+
+# Update : comments/update/id (updateCommentById, verifyAuth, controller)
+
+## ArticlesComments :
+
+# Get : comments-articles (findArticleByValue, verifyAuth, controller)
+
+# Post : comments-articles/add (addComment, verifyAuth, controller)
 
 
 
