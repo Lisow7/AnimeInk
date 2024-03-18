@@ -1,6 +1,8 @@
 MVC
 
-### Account ###
+### Account
+
+Post : account/register (Register
 
 
 
