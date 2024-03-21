@@ -1,0 +1,44 @@
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer h3 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.social-media ul,
+.legal ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.social-media a,
+.legal a {
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.social-media a:hover,
+.legal a:hover {
+    color: #ccc;
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 20px;
+}
+
