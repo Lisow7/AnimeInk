@@ -1,0 +1,21 @@
+.news-anime-section {
+  margin-bottom: 20px;
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .anime-list {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding-bottom: 10px;
+    scrollbar-width: none; /* Supprime la barre de défilement par défaut */
+    -ms-overflow-style: none; /* Supprime la barre de défilement dans IE/Edge */
+
+    &::-webkit-scrollbar {
+      display: none; /* Supprime la barre de défilement dans WebKit (Safari, Chrome, etc.) */
+    }
+  }
+}

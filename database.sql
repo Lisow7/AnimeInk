@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS `antoinemazelaygue_3wa_Anime_Ink`;
+-- DROP DATABASE IF EXISTS `antoinemazelaygue_Anime_Ink_last_version`;
 
-CREATE DATABASE `antoinemazelaygue_3wa_Anime_Ink`;
+-- CREATE DATABASE `antoinemazelaygue_Anime_Ink_last_version`;
 
-USE `antoinemazelaygue_3wa_Anime_Ink`;
+USE `antoinemazelaygue_Anime_Ink_last_version`;
 
 
 DROP TABLE IF EXISTS `roles`;
