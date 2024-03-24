@@ -1,6 +1,6 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
-/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 * {
   box-sizing: border-box;
   margin: 0;
@@ -88,10 +88,10 @@ textarea {
 @media only screen and (min-width: 1024px) and (max-width: 1365px) {
   /* ------------- Desktop HD -------------- */
 }
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
+@media only screen and (min-width:768px) and (max-width: 1023px) {
   /* ------------- Tablet ------------- */
 }
-@media only screen and (min-width: 1px) and (max-width: 767px) {
+@media only screen and (min-width:1px) and (max-width: 767px) {
   /* ---------- Phone ------------ */
 }
 .start {
@@ -134,7 +134,7 @@ textarea {
   color: #f5f5f5; /* Couleur du texte */
 }
 
-.search-bar input[type="text"] {
+.search-bar input[type=text] {
   padding: 8px; /* Espacement intérieur du champ de recherche */
   border-radius: 4px; /* Coins arrondis du champ de recherche */
   border: none; /* Supprime la bordure par défaut */
