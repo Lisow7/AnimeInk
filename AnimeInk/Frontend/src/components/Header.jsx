@@ -1,11 +1,11 @@
 import React from "react";
-import "./Header.scss"; // Import du fichier de style SASS
+import "../assets/sass/_layout.scss"; // Import du fichier de style SASS
 
 const Header = () => {
   return (
     <header className="header">
       <div className="logo">
-        <img src="/path/to/your/logo.png" alt="Logo" />
+        <img src="../assets/images/Logo-Anime-ink.png" alt="Logo" />
       </div>
       <nav className="nav">
         <ul>

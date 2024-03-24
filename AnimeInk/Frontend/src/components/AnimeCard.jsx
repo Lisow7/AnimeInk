@@ -63,3 +63,36 @@ function AnimeCard({ animeId }) {
 }
 
 export default AnimeCard;
+
+// import React, { useState, useEffect } from "react";
+// import axios from "axios";
+
+// const AnimeCard = ({ anime }) => {
+//   const [animeData, setAnimeData] = useState(null);
+
+//   useEffect(() => {
+//     const fetchAnimeData = async () => {
+//       try {
+//         const response = await axios.get(
+//           `https://api.jikan.moe/v4/anime/${anime.mal_id}`
+//         );
+//         setAnimeData(response.data);
+//       } catch (error) {
+//         console.error(
+//           "Erreur lors de la récupération des données de l'anime:",
+//           error
+//         );
+//       }
+//     };
+
+//     if (anime && anime.mal_id) {
+//       fetchAnimeData();
+//     }
+//   }, [anime]);
+
+//   return (
+//     <div className="anime-card">{/* Afficher les données de l'anime */}</div>
+//   );
+// };
+
+// export default AnimeCard;
