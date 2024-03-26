@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+
 import axios from "axios";
+
 import AnimeCard from "../AnimeCard.jsx";
-import "./AnimeRandom.scss";
 
 const AnimeRandom = () => {
   const [randomAnimeList, setRandomAnimeList] = useState([]);

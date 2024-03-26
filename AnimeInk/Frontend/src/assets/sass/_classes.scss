@@ -5,3 +5,69 @@
   font-size: 5.5rem;
   margin: 7rem auto;
 }
+
+/* ---------- ANIME CATEGORIES -------------------- */
+
+.anime-category {
+  margin-bottom: 20px;
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .anime-list {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding-bottom: 10px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none; /* Supprime la barre de défilement dans WebKit (Safari, Chrome, etc.) */
+    }
+
+    scroll-behavior: smooth;
+    transition: transform 0.5s ease-in-out;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}
+
+/* ---------- ANIMES NEWS -------------------- */
+
+.news-anime-section {
+  margin-bottom: 20px;
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .anime-list {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding-bottom: 10px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+/* ---------- ANIMES RANDOM -------------------- */
+
+.random-anime-section {
+  margin-bottom: 20px;
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+}

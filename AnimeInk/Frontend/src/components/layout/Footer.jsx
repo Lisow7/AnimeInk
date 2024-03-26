@@ -1,29 +1,40 @@
-import LogoAnimeInk from "../../assets/images/Logo-Anime-ink";
-
 const Footer = () => {
   return (
-    <>
-      <img src={LogoAnimeInk} alt="Logo" />
-      <section class="reseaux">
-        <article>
-          <a href="#Home">
-            <img src="img/insta.png" alt="Instagram" />
-          </a>
-        </article>
-        <article>
-          <img src="img/fb.png" alt="Facebook" />
-        </article>
-        <article>
-          <img src="img/twitter.png" alt="Twitter" />
-        </article>
-        <article>
-          <img src="img/wa.png" alt="WhatsApp" />
-        </article>
-      </section>
-      <section class="fin">
-        <p>Copyright &copy; Anime-Ink</p>
-      </section>
-    </>
+    <footer className="footer">
+      <div className="footer-content">
+        <div className="social-media">
+          <h3>Suivez-nous</h3>
+          <ul>
+            <li>
+              <a href="https://facebook.com">Facebook</a>
+            </li>
+            <li>
+              <a href="https://twitter.com">Twitter</a>
+            </li>
+            <li>
+              <a href="https://instagram.com">Instagram</a>
+            </li>
+            <li>
+              <a href="https://linkedin.com">LinkedIn</a>
+            </li>
+          </ul>
+        </div>
+        <div className="legal">
+          <h3>Mentions légales</h3>
+          <ul>
+            <li>
+              <a href="/terms">Termes et conditions</a>
+            </li>
+            <li>
+              <a href="/privacy">Politique de confidentialité</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="copyright">
+        <p>&copy; 2024 Anime-Ink. Tous droits réservés.</p>
+      </div>
+    </footer>
   );
 };
 

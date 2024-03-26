@@ -5,8 +5,8 @@ import "./index.css";
 import Article from "./pages/Article.jsx";
 import Profile from "./pages/Profile.jsx";
 import LoginRegister from "./pages/LoginRegister.jsx";
-import Header from "./components/Header.jsx";
-import Footer from "./components/Footer.jsx";
+import Header from "./components/layout/Header.jsx";
+import Footer from "./components/layout/Footer.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+
 import axios from "axios";
+import PropTypes from "prop-types";
 
 function AnimeCard({ animeId }) {
   const [animeData, setAnimeData] = useState(null);
@@ -29,20 +31,20 @@ function AnimeCard({ animeId }) {
   const {
     titles,
     images,
-    trailer,
-    status,
-    aired,
+    // trailer,
+    // status,
+    // aired,
     episodes,
-    synopsis,
-    genres,
-    studios,
+    // synopsis,
+    // genres,
+    // studios,
     score,
-    ranked,
-    popularity,
-    favorites,
-    members,
-    licensors,
-    producers,
+    // ranked,
+    // popularity,
+    // favorites,
+    // members,
+    // licensors,
+    // producers,
   } = animeData;
 
   return (
@@ -56,43 +58,14 @@ function AnimeCard({ animeId }) {
         <h2 className="anime-card__title">{titles[0].title}</h2>
         <p className="anime-card__score">Score: {score}</p>
         <p className="anime-card__episodes">Épisodes: {episodes}</p>
-        {/* Ajoute d'autres détails de l'anime selon les besoins */}
       </div>
     </div>
   );
 }
 
+// Les propTypes servent à valider les types de données passées à un composant React, facilitant ainsi la détection d'erreurs et la documentation du code.
+AnimeCard.propTypes = {
+  animeId: PropTypes.number.isRequired,
+};
+
 export default AnimeCard;
-
-// import React, { useState, useEffect } from "react";
-// import axios from "axios";
-
-// const AnimeCard = ({ anime }) => {
-//   const [animeData, setAnimeData] = useState(null);
-
-//   useEffect(() => {
-//     const fetchAnimeData = async () => {
-//       try {
-//         const response = await axios.get(
-//           `https://api.jikan.moe/v4/anime/${anime.mal_id}`
-//         );
-//         setAnimeData(response.data);
-//       } catch (error) {
-//         console.error(
-//           "Erreur lors de la récupération des données de l'anime:",
-//           error
-//         );
-//       }
-//     };
-
-//     if (anime && anime.mal_id) {
-//       fetchAnimeData();
-//     }
-//   }, [anime]);
-
-//   return (
-//     <div className="anime-card">{/* Afficher les données de l'anime */}</div>
-//   );
-// };
-
-// export default AnimeCard;
