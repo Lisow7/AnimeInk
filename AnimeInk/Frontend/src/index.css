@@ -1,6 +1,5 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 * {
   box-sizing: border-box;
   margin: 0;
@@ -104,58 +103,112 @@ textarea {
   margin: 7rem auto;
 }
 
+/* ---------- ANIME CATEGORIES -------------------- */
+.anime-category {
+  margin-bottom: 20px;
+}
+.anime-category h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.anime-category .anime-list {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding-bottom: 10px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  transition: transform 0.5s ease-in-out;
+}
+.anime-category .anime-list::-webkit-scrollbar {
+  display: none; /* Supprime la barre de défilement dans WebKit (Safari, Chrome, etc.) */
+}
+.anime-category .anime-list:hover {
+  transform: scale(1.02);
+}
+
+/* ---------- ANIMES NEWS -------------------- */
+.news-anime-section {
+  margin-bottom: 20px;
+}
+.news-anime-section h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.news-anime-section .anime-list {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding-bottom: 10px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.news-anime-section .anime-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- ANIMES RANDOM -------------------- */
+.random-anime-section {
+  margin-bottom: 20px;
+}
+.random-anime-section h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
 /*HEADER*/
 .header {
-  display: flex; /* Utilisation de flexbox pour aligner les éléments horizontalement */
-  justify-content: space-between; /* Espace équitable entre les éléments */
-  align-items: center; /* Centre les éléments verticalement */
-  padding: 20px; /* Espacement intérieur */
-  background-color: #6ab6f1; /* Couleur de fond */
-  color: #f5f5f5; /* Couleur du texte */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.75rem;
+  background-color: #6ab6f1;
+  color: #f5f5f5;
 }
 
 .logo img {
-  width: 100px; /* Ajuste la largeur du logo */
+  width: 100px;
 }
 
 .nav ul {
-  list-style-type: none; /* Supprime les puces de la liste */
-  margin: 0; /* Supprime la marge par défaut */
-  padding: 0; /* Supprime le rembourrage par défaut */
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .nav li {
-  display: inline; /* Affiche les éléments de la liste en ligne */
-  margin-right: 20px; /* Espacement entre les éléments de la liste */
+  display: inline;
+  margin-right: 1.5rem;
 }
 
 .nav li a {
-  text-decoration: none; /* Supprime la décoration de lien par défaut */
-  color: #f5f5f5; /* Couleur du texte */
+  text-decoration: none;
+  color: #f5f5f5;
 }
 
 .search-bar input[type=text] {
-  padding: 8px; /* Espacement intérieur du champ de recherche */
-  border-radius: 4px; /* Coins arrondis du champ de recherche */
-  border: none; /* Supprime la bordure par défaut */
-  margin-right: 10px; /* Espacement entre le champ de recherche et le bouton */
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  margin-right: 10px;
 }
 
 .search-bar button {
-  padding: 8px 15px; /* Espacement intérieur du bouton */
-  border-radius: 4px; /* Coins arrondis du bouton */
-  border: none; /* Supprime la bordure par défaut */
-  background-color: #f5f5f5; /* Couleur de fond du bouton */
-  color: #1c1f22; /* Couleur du texte du bouton */
-  cursor: pointer; /* Curseur de la souris sur le bouton */
+  padding: 8px 15px;
+  border-radius: 4px;
+  border: none;
+  background-color: #f5f5f5;
+  color: #1c1f22;
+  cursor: pointer;
 }
 
-/*-----------------------*/
+/*---------------------------------------------------------------------*/
 /* FOOTER */
 .footer {
   background-color: #6ab6f1;
   color: #f5f5f5;
-  padding: 20px 0;
+  padding: 1.5rem;
 }
 
 .footer-content {
@@ -169,7 +222,7 @@ textarea {
 .footer h3 {
   color: #f5f5f5;
   font-size: 1.2rem;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 }
 
 .social-media ul,
@@ -182,7 +235,7 @@ textarea {
 .legal a {
   color: #f5f5f5;
   text-decoration: none;
-  margin-bottom: 5px;
+  margin-bottom: 0.5rem;
   display: block;
 }
 
@@ -193,7 +246,7 @@ textarea {
 
 .copyright {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 1rem;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -1,57 +1,58 @@
-@import "variables";
 /*HEADER*/
+
 .header {
-  display: flex; /* Utilisation de flexbox pour aligner les éléments horizontalement */
-  justify-content: space-between; /* Espace équitable entre les éléments */
-  align-items: center; /* Centre les éléments verticalement */
-  padding: 20px; /* Espacement intérieur */
-  background-color: $primary; /* Couleur de fond */
-  color: $secondary; /* Couleur du texte */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.75rem;
+  background-color: $primary;
+  color: $secondary;
 }
 
 .logo img {
-  width: 100px; /* Ajuste la largeur du logo */
+  width: 100px;
 }
 
 .nav ul {
-  list-style-type: none; /* Supprime les puces de la liste */
-  margin: 0; /* Supprime la marge par défaut */
-  padding: 0; /* Supprime le rembourrage par défaut */
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .nav li {
-  display: inline; /* Affiche les éléments de la liste en ligne */
-  margin-right: 20px; /* Espacement entre les éléments de la liste */
+  display: inline;
+  margin-right: 1.5rem;
 }
 
 .nav li a {
-  text-decoration: none; /* Supprime la décoration de lien par défaut */
-  color: $secondary; /* Couleur du texte */
+  text-decoration: none;
+  color: $secondary;
 }
 
 .search-bar input[type="text"] {
-  padding: 8px; /* Espacement intérieur du champ de recherche */
-  border-radius: 4px; /* Coins arrondis du champ de recherche */
-  border: none; /* Supprime la bordure par défaut */
-  margin-right: 10px; /* Espacement entre le champ de recherche et le bouton */
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  margin-right: 10px;
 }
 
 .search-bar button {
-  padding: 8px 15px; /* Espacement intérieur du bouton */
-  border-radius: 4px; /* Coins arrondis du bouton */
-  border: none; /* Supprime la bordure par défaut */
-  background-color: $secondary; /* Couleur de fond du bouton */
-  color: $third; /* Couleur du texte du bouton */
-  cursor: pointer; /* Curseur de la souris sur le bouton */
+  padding: 8px 15px;
+  border-radius: 4px;
+  border: none;
+  background-color: $secondary;
+  color: $third;
+  cursor: pointer;
 }
 
-/*-----------------------*/
+/*---------------------------------------------------------------------*/
 
 /* FOOTER */
+
 .footer {
   background-color: $primary;
   color: $secondary;
-  padding: 20px 0;
+  padding: 1.5rem;
 }
 
 .footer-content {
@@ -65,7 +66,7 @@
 .footer h3 {
   color: $secondary;
   font-size: 1.2rem;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 }
 
 .social-media ul,
@@ -78,7 +79,7 @@
 .legal a {
   color: $secondary;
   text-decoration: none;
-  margin-bottom: 5px;
+  margin-bottom: 0.5rem;
   display: block;
 }
 
@@ -89,5 +90,5 @@
 
 .copyright {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 1rem;
 }

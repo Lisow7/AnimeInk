@@ -1,11 +1,9 @@
+import myLogo from "../assets/images/Logo-Anime-ink.png";
+
 const Logo = () => {
   return (
     <>
-      <img
-        href="../assets/images/Logo-Anime-ink.png"
-        alt="Logo"
-        className="start"
-      />
+      <img src={myLogo} alt="Logo Web Site" className="" />
     </>
   );
 };

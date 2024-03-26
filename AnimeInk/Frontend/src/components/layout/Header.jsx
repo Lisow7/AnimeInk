@@ -1,20 +1,27 @@
 const Header = () => {
   return (
-    <>
-      <nav>
-        <a href="#Home">
-          <p>Anime-Ink</p>
-        </a>
+    <header className="header">
+      <div className="logo">
+        <h3>ANIME INK</h3>
+      </div>
+      <nav className="nav">
         <ul>
           <li>
-            <a href="#Animes">Animes</a>
+            <a href="/">Home</a>
           </li>
           <li>
-            <a href="#Login">Login</a>
+            <a href="/mes-animes">Animes</a>
+          </li>
+          <li>
+            <a href="/mon-profil">Connexion</a>
           </li>
         </ul>
       </nav>
-    </>
+      <div className="search-bar">
+        <input type="text" placeholder="Search..." />
+        <button type="submit">Let&apos;s Go</button>
+      </div>
+    </header>
   );
 };
 
